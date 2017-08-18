@@ -1,5 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
+<script src="vendor/jquery/dist/jquery.min.js"></script>
+<script src="app/js/invoice.js"></script>
+
 		  <head>
           
 		  <style>
@@ -35,17 +38,21 @@
         </tr>
         </table>
 		<table id="table-bordered" style="width:100%;">
-
+		<input type="hidden" name="id" id="id">
 		
 
 			<tr>
 				<td id="table_td"  rowspan="2"><strong>Customer Details:-</strong><br>
-                Customer Name:<input type="text" id="name" name="name"><br>
-				Company Name:<input type="text" id="company" name="company"><br>
+                Company Name:<select id="company" name="company" onchange="getCompanyAddress(this.value);">
+                				@foreach($company as $company)
+                					<option value="{{$company->id}}">{{$company->company_name}}</option>
+                				@endforeach
+                			  </select><br>
+				Customer Name:<input type="text" id="name" name="name"><br>
 				Address:<input type="text" id="address" name="address">
 				</td>
 
-				<td id="table_td" >Invoice no:-<input readonly="" id="invoice" name="invoice" value="IN/{{$data[0]->count}}"></td>
+				<td id="table_td" >Invoice no:-<input readonly="" id="invoice" name="invoice" value="IN-{{$data[0]->count}}"></td>
 
 				<td id="table_td" rowspan="2" ><strong>SMARTFIN Corporate Advisors Pvt Ltd</strong><br>
 				Add : H-004, Platform level, Railway station complex<br>
@@ -69,7 +76,7 @@
         <td id="table_td">Place of Supply:
         <select id="place_of_supply" name="place_of_supply" onchange="placeOfSup(this.value);">
         <option value="0">Select</option>
-        <option value="MH">Maharashtra</option>
+        <option value="Maharashtra">Maharashtra</option>
          <option value="Ot">Others</option>
         </select></td>
 		<td id="table_td"><strong>GSTIN</strong>: 27AAHC1232C1ZZ<br></td>
@@ -98,12 +105,25 @@
 		<td id="table_td">1.</td>
 		<td id="table_td">
 		<select id="product" name="product">
-			<option value="promo">Bulk SMS- Transactinal</option>
-			<option value="trans">Bulk SMS- Promotional</option>
-		</select></td>
+			<option value="Bulk SMS- Transactinal">Bulk SMS- Transactinal</option>
+			<option value="Bulk SMS- Promotional">Bulk SMS- Promotional</option>
+		</select><br>
+		<select id="product2" name="product2">
+			<option value="Bulk SMS- Transactinal">Bulk SMS- Transactinal</option>
+			<option value="Bulk SMS- Promotional">Bulk SMS- Promotional</option>
+		</select><br>
+		<select id="product3" name="product3">
+			<option value="Bulk SMS- Transactinal">Bulk SMS- Transactinal</option>
+			<option value="Bulk SMS- Promotional">Bulk SMS- Promotional</option>
+		</select><br>
+		</td>
+
         <td id="table_td">998413</td>
 		
-		<td>Rs:-<input type="text" name="amount" onchange="calcTax(this.value);"></td>
+		<td>
+		Rs:-<input type="text" id="amount1" name="amount1" value="0" onchange="calcTax(this.value);"><br>
+		Rs:-<input type="text" id="amount2" name="amount2" value="0" onchange="calcTax(this.value);"><br>
+		Rs:-<input type="text" id="amount3" name="amount3" value="0" onchange="calcTax(this.value);"></td>
 		</tr>
 		
 
@@ -112,7 +132,7 @@
        <td id="table_td" rowspan="5" ></td>
         
 		<td id="table_td" colspan="2" style="text-align:right">Sub total</td>
-		<td id="table_td"><input type="hidden" name="h_Sub_amount" id="h_Sub_amount"><span id="Sub_amount" name="Sub_amount"></span></td>
+		<td id="table_td">Rs:-<input type="hidden" name="h_Sub_amount" id="h_Sub_amount"><span id="Sub_amount" name="Sub_amount"></span></td>
 		</tr>
         
         <tr>
@@ -165,56 +185,4 @@
 		</form>
 		</body>
 		</html>
-		<script type="text/javascript">
-			$(function(){
-				var now = new Date();
-			    var day = ("0" + now.getDate()).slice(-2);
-			    var month = ("0" + (now.getMonth() + 1)).slice(-2);
-			    var today = now.getFullYear() + "-" + (month) + "-" + (day);
-				
-				$('#h_date').val(today);
-				$('#date').text(today);
-				$('#submitInvoice').click(function(){
-					var data = $('#invoiceForm').serialize();
-					alert(data);
-				});
-			});
-			function placeOfSup(str){
-					alert(str);
-
-			}
-			function calcTax(amount){
-				amount = parseInt(amount);
-				$('#h_Sub_amount').val(amount);
-				$('#Sub_amount').text(amount);
-				var placeoforder = $('#place_of_supply').val();
-				if(placeoforder == "MH"){
-
-				    var CGST_Amount = amount*(9/100);
-
-				   
-				  	var SGST_Amount = amount*(9/100);
-					$('#cgst').text(CGST_Amount);
-					$('#sgst').text(SGST_Amount);
-					$('#h_total_tax').val(CGST_Amount+SGST_Amount);
-					$('#total_tax').text(CGST_Amount+SGST_Amount);
-					$('#h_total_amount').val(CGST_Amount+SGST_Amount+amount);
-					$('#total_amount').text(CGST_Amount+SGST_Amount+amount);
-					$('#h_cgst').val(CGST_Amount);
-					$('#h_sgst').val(CGST_Amount);
-					$('#igst').text(0);
-				}else{
-					$('#cgst').text(0);
-					$('#sgst').text(0);
-					$('#h_cgst').val(0);
-					$('#h_sgst').val(0);
-					var IGST_Amount = amount*(18/100);
-					$('#h_total_tax').val(IGST_Amount);
-					$('#total_tax').text(IGST_Amount);
-					$('#h_total_amount').val(IGST_Amount + amount);
-					$('#total_amount').text(IGST_Amount + amount);
-					$('#igst').text(IGST_Amount);
-					$('#h_igst').val(IGST_Amount);
-				}
-			}
-		</script>
+		

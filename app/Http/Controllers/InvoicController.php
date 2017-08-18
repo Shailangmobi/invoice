@@ -13,6 +13,9 @@ class InvoicController extends Controller
     protected function getCount()
     {
         $count = DB::table('invoice_count')->select('count')->get();
-        return View('invoice')->with('data',$count);
+        $company = DB::table('company')->select('company_name','id')->get();
+        return View('invoice')->with('data',$count)->with('company',$company);
     }
+
+   
 }

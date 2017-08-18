@@ -1,5 +1,5 @@
 <?php
-
+$api = app('Dingo\Api\Routing\Router');
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,6 +10,49 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', [
+Route::get('/addUser', function () {
+return view('addUser');
+});
+
+/*Route::get('/create_invocie', function () {
+return view('getUserForInvoice');
+});
+*/
+
+Route::get('/create_invocie', [
 	    'as' => '/', 'uses' => 'InvoicController@getCount'
-	]);
+]);
+
+Route::get('/', [
+'as' => '/', 'uses' => 'Api\V1\UserController@viewInvoice'
+]);
+
+Route::get('/invoice', [
+	    'as' => '/', 'uses' => 'InvoicController@getCount'
+]);
+
+Route::get('pdfview/{id}',array('as'=>'pdfview','uses'=>'Api\V1\UserController@pdfview'));
+
+Route::get('edit/{id}',array('as'=>'/','uses'=>'Api\V1\UserController@edit'));
+
+$api->version('v1', function ($api) {
+	$api->post('insertInvoice','App\Http\Controllers\Api\V1\UserController@insertInvoice');
+});
+
+$api->version('v1', function ($api) {
+	$api->post('addCustomer','App\Http\Controllers\Api\V1\UserController@addCustomer');
+});
+
+
+$api->version('v1', function ($api) {
+	$api->get('pdfgen/{id}','App\Http\Controllers\Api\V1\UserController@pdfview');
+});
+
+$api->version('v1', function ($api) {
+	$api->get('getCompanyDetails/{id}','App\Http\Controllers\Api\V1\UserController@getCompanyDetails');
+});
+
+$api->version('v1', function ($api) {
+	$api->post('editInvoice','App\Http\Controllers\Api\V1\UserController@editInvoice');
+});
+
