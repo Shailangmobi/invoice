@@ -44,6 +44,7 @@
 			<tr>
 				<td id="table_td"  rowspan="2"><strong>Customer Details:-</strong><br>
                 Company Name:<select id="company" name="company" onchange="getCompanyAddress(this.value);">
+                					<option value="">Select</option>
                 				@foreach($company as $company)
                 					<option value="{{$company->id}}">{{$company->company_name}}</option>
                 				@endforeach
@@ -75,7 +76,7 @@
 		</td>
         <td id="table_td">Place of Supply:
         <select id="place_of_supply" name="place_of_supply" onchange="placeOfSup(this.value);">
-        <option value="0">Select</option>
+       
         <option value="Maharashtra">Maharashtra</option>
          <option value="Ot">Others</option>
         </select></td>
@@ -104,26 +105,29 @@
 		<tr style="height:150px;">
 		<td id="table_td">1.</td>
 		<td id="table_td">
-		<select id="product" name="product">
-			<option value="Bulk SMS- Transactinal">Bulk SMS- Transactinal</option>
-			<option value="Bulk SMS- Promotional">Bulk SMS- Promotional</option>
+		@php ($i = 1)
+		@foreach($product as $products)
+		<select id="product{{$i}}" name="product{{$i}}">
+		@php ($i++)
+			<option value="">Select</option>
+			@foreach($product as $name)
+			<option value="{{$name->product_name}}">{{$name->product_name}}</option>
+				
+			@endforeach
 		</select><br>
-		<select id="product2" name="product2">
-			<option value="Bulk SMS- Transactinal">Bulk SMS- Transactinal</option>
-			<option value="Bulk SMS- Promotional">Bulk SMS- Promotional</option>
-		</select><br>
-		<select id="product3" name="product3">
-			<option value="Bulk SMS- Transactinal">Bulk SMS- Transactinal</option>
-			<option value="Bulk SMS- Promotional">Bulk SMS- Promotional</option>
-		</select><br>
+		@endforeach
+		
 		</td>
 
         <td id="table_td">998413</td>
 		
 		<td>
-		Rs:-<input type="text" id="amount1" name="amount1" value="0" onchange="calcTax(this.value);"><br>
-		Rs:-<input type="text" id="amount2" name="amount2" value="0" onchange="calcTax(this.value);"><br>
-		Rs:-<input type="text" id="amount3" name="amount3" value="0" onchange="calcTax(this.value);"></td>
+		@php ($i = 1)
+		@foreach($product as $product)
+		Rs:-<input type="text" id="amount{{$i}}" name="amount{{$i}}" value="0" onchange="calcTax(this.value);"><br>
+		@php ($i++)
+		@endforeach
+		</td>
 		</tr>
 		
 

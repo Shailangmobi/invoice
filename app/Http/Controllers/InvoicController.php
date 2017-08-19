@@ -14,7 +14,8 @@ class InvoicController extends Controller
     {
         $count = DB::table('invoice_count')->select('count')->get();
         $company = DB::table('company')->select('company_name','id')->get();
-        return View('invoice')->with('data',$count)->with('company',$company);
+        $product = DB::table('product_master')->get();
+        return View('invoice')->with('data',$count)->with('company',$company)->with('product',$product);
     }
 
    

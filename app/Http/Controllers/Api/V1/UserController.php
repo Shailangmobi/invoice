@@ -32,6 +32,13 @@ class UserController extends Controller
     		return \View('viewInvoice')->with('data',$result);
 
     }
+
+    public function viewCustomer(){
+
+        $result = Invoice::viewCustomer();
+            return \View('viewCustomer')->with('data',$result);
+
+    }
     public function edit($id){
 
         $result = Invoice::getInvoiceById($id);
@@ -78,6 +85,44 @@ class UserController extends Controller
        $input = $request->all();
        $insert = Invoice::insertCustomer($input);
        return  $insert;
+
+    }
+
+    public function addProfile(Request $request){
+
+       $input = $request->all();
+       $insert = Invoice::addProfile($input);
+       return  $insert;
+
+    }
+
+    public function editCustomer(Request $request){
+
+       $input = $request->all();
+      
+       $insert = Invoice::editCustomer($input);
+       return  $insert;
+
+    }
+
+    public function getCustomerById($id){
+
+       
+
+       $insert = Invoice::getCustomerById($id);
+      if(sizeof($insert) > 0){
+        $message['code'] = 200;
+        $message['status'] ="Success";
+        $message['message'] = "Data Found";
+        $message['data'] = $insert;
+
+      }else{
+        $message['code'] = 200;
+        $message['status'] ="Success";
+        $message['message'] = "Data Found";
+        $message['data'] = $insert;
+      }
+      return response()->json($message);
 
     }
 
