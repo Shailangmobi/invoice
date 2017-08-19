@@ -14,6 +14,10 @@ Route::get('/addUser', function () {
 return view('addUser');
 });
 
+Route::get('/addCompanyProfile', function () {
+return view('addProfile');
+});
+
 /*Route::get('/create_invocie', function () {
 return view('getUserForInvoice');
 });
@@ -21,6 +25,10 @@ return view('getUserForInvoice');
 
 Route::get('/create_invocie', [
 	    'as' => '/', 'uses' => 'InvoicController@getCount'
+]);
+
+Route::get('viewCustomer', [
+'as' => '/viewCustomer', 'uses' => 'Api\V1\UserController@viewCustomer'
 ]);
 
 Route::get('/', [
@@ -40,12 +48,25 @@ $api->version('v1', function ($api) {
 });
 
 $api->version('v1', function ($api) {
+	$api->post('addProfile','App\Http\Controllers\Api\V1\UserController@addProfile');
+});
+
+$api->version('v1', function ($api) {
 	$api->post('addCustomer','App\Http\Controllers\Api\V1\UserController@addCustomer');
 });
+
+$api->version('v1', function ($api) {
+	$api->post('editCustomer','App\Http\Controllers\Api\V1\UserController@editCustomer');
+});
+
 
 
 $api->version('v1', function ($api) {
 	$api->get('pdfgen/{id}','App\Http\Controllers\Api\V1\UserController@pdfview');
+});
+
+$api->version('v1', function ($api) {
+	$api->get('getCustomerById/{id}','App\Http\Controllers\Api\V1\UserController@getCustomerById');
 });
 
 $api->version('v1', function ($api) {

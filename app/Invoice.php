@@ -8,7 +8,7 @@ class Invoice extends Model
 {
     //
 
-      public static function insertCustomer($data)
+    public static function insertCustomer($data)
     {
         
 		try {
@@ -23,6 +23,36 @@ class Invoice extends Model
 				$message['code']= 400 ;
 				$message['status']= "Failed" ;
 				$message['message']= "Customer Data Not Inserted !";
+				return response()->json($message);
+			}
+				
+		
+		} catch (\Exception $e) {
+				$message['code']= 401 ;
+				$message['status']= "Exception Caought" ;
+				$message['message']= "There was an ERROR !";
+				return response()->json($message);
+		}
+		
+		
+
+    }
+
+    public static function addProfile($data)
+    {
+        
+		try {
+			$insertDetails = DB::table('company_master')->insert($data);
+			if(sizeof($insertDetails) > 0 ){
+				$message['code']= 200 ;
+				$message['status']= "Success" ;
+				$message['message']= "Profile Data Inserted !";
+				
+				return response()->json($message);
+			}else{
+				$message['code']= 400 ;
+				$message['status']= "Failed" ;
+				$message['message']= "Profile Data Not Inserted !";
 				return response()->json($message);
 			}
 				
@@ -59,7 +89,7 @@ class Invoice extends Model
 		$insertData['user_id'] = "21";
 		$insertData['customer_id'] = $data['id'];
 		try {
-			if($data['amount'] != 0 || $data['amount'] != "" || $data['amount'] != null){
+			if($data['amount1'] != 0 || $data['amount1'] != "" || $data['amount1'] != null){
 				$insertDetails = DB::table('invoice')->insert($insertData);
 			}
 			if($data['amount2'] != 0 || $data['amount2'] != "" || $data['amount2'] != null) {
@@ -70,6 +100,16 @@ class Invoice extends Model
 			if ($data['amount3'] != 0 || $data['amount3'] != "" || $data['amount3'] != null) {
 				$insertData['product'] = $data['product3'];
 				$insertData['amount'] = $data['amount3'];
+				$insertDetails = DB::table('invoice')->insert($insertData);
+			}
+			if ($data['amount4'] != 0 || $data['amount4'] != "" || $data['amount4'] != null) {
+				$insertData['product'] = $data['product4'];
+				$insertData['amount'] = $data['amount4'];
+				$insertDetails = DB::table('invoice')->insert($insertData);
+			}
+			if ($data['amount5'] != 0 || $data['amount5'] != "" || $data['amount5'] != null) {
+				$insertData['product'] = $data['product5'];
+				$insertData['amount'] = $data['amount5'];
 				$insertDetails = DB::table('invoice')->insert($insertData);
 			}
 			
@@ -87,7 +127,7 @@ class Invoice extends Model
 			}
 				
 		
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 				$message['code']= 401 ;
 				$message['status']= "Exception Caought" ;
 				$message['message']= "There was an ERROR !";
@@ -100,6 +140,46 @@ class Invoice extends Model
     public static function getInvoice(){
 
     	$result = DB::table('invoice')->where('status','=',1)->orderBy('id','desc')->groupBy('invoice')->get();
+    	return $result;
+    
+    }
+
+    public static function editCustomer($data){
+
+    	try {
+    		$result = DB::table('company')->where('id','=',$data['id'])->update($data);
+    		if(sizeof($result) > 0 ){
+				$message['code']= 200 ;
+				$message['status']= "Success" ;
+				$message['message']= "Customer Data updated !";
+				
+				return response()->json($message);
+			}else{
+				$message['code']= 400 ;
+				$message['status']= "Failed" ;
+				$message['message']= "Customer Data Not updated !";
+				return response()->json($message);
+			}
+    	} catch (\Exception $e) {
+    			$message['code']= 401 ;
+				$message['status']= "Exception Caought" ;
+				$message['message']= "There was an ERROR !";
+				return response()->json($message);
+    	}
+    
+    }
+
+    public static function getCustomerById($id){
+
+    	$result = DB::table('company')->where('status','=',1)->where('id','=',$id)->get();
+    	return $result;
+    
+    }
+
+
+    public static function viewCustomer(){
+
+    	$result = DB::table('company')->where('status','=',1)->orderBy('id','desc')->get();
     	return $result;
     
     }
@@ -128,9 +208,71 @@ class Invoice extends Model
     }
 
     public static function editInvoice($data){
-
-    	$result = DB::table('invoice')->where('id','=',$data['id'])->update($data);
-    	return $result;
+    	$insertData['gstin'] = $data['gstin'];
+        $insertData['name'] = $data['name'];
+       	$insertData['amount'] = $data['amount2'];
+		$insertData['product'] = $data['product2'];
+        $insertData['company_name'] = $data['company_name'];
+		$insertData['address'] = $data['address'];
+		$insertData['invoice'] = $data['invoice'];
+		$insertData['place_of_supply'] = $data['place_of_supply'];
+		$insertData['date'] = $data['date'];
+		$insertData['sub_total'] = $data['sub_total'];
+		$insertData['cgst'] = $data['cgst'];
+		$insertData['igst'] = $data['igst'];
+		$insertData['sgst'] = $data['sgst'];
+		$insertData['total_tax'] = $data['total_tax'];
+		$insertData['total_amount'] = $data['total_amount'];
+		$insertData['user_id'] = "21";
+		$insertData['customer_id'] = $data['id'];
+    	$result = DB::table('invoice')->where('invoice','=',$data['invoice'])->delete();
+    	try {
+			if($data['amount1'] != 0 || $data['amount1'] != "" || $data['amount1'] != null){
+				$insertData['amount'] = $data['amount1'];
+				$insertData['product'] = $data['product1'];
+				$insertDetails = DB::table('invoice')->insert($insertData);
+			}
+			if($data['amount2'] != 0 || $data['amount2'] != "" || $data['amount2'] != null) {
+				$insertData['amount'] = $data['amount2'];
+				$insertData['product'] = $data['product2'];
+				$insertDetails = DB::table('invoice')->insert($insertData);
+			}
+			if ($data['amount3'] != 0 || $data['amount3'] != "" || $data['amount3'] != null) {
+				$insertData['product'] = $data['product3'];
+				$insertData['amount'] = $data['amount3'];
+				$insertDetails = DB::table('invoice')->insert($insertData);
+			}
+			if ($data['amount4'] != 0 || $data['amount4'] != "" || $data['amount4'] != null) {
+				$insertData['product'] = $data['product4'];
+				$insertData['amount'] = $data['amount4'];
+				$insertDetails = DB::table('invoice')->insert($insertData);
+			}
+			if ($data['amount5'] != 0 || $data['amount5'] != "" || $data['amount5'] != null) {
+				$insertData['product'] = $data['product5'];
+				$insertData['amount'] = $data['amount5'];
+				$insertDetails = DB::table('invoice')->insert($insertData);
+			}
+			if(sizeof($insertDetails) > 0 ){
+				$message['code']= 200 ;
+				$message['status']= "Success" ;
+				$message['message']= "Invoice Data Updated !";
+				
+				return response()->json($message);
+			}else{
+				$message['code']= 400 ;
+				$message['status']= "Failed" ;
+				$message['message']= "Invoice Data Not Updated !";
+				return response()->json($message);
+			}
+				
+		
+		} catch (\Exception $e) {
+				$message['code']= 401 ;
+				$message['status']= "Exception Caought" ;
+				$message['message']= "There was an ERROR !";
+				return response()->json($message);
+		}
+    	
     
     }
 }

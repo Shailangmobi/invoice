@@ -24,7 +24,7 @@ function calcTax(amount){
 	$('#h_Sub_amount').val(amount);
 	$('#Sub_amount').text(amount);
 	var placeoforder = $('#place_of_supply').val();
-	if(placeoforder == "MH"){
+	if(placeoforder == "Maharashtra"){
 		var cgst = 9/2;
 	    var CGST_Amount = Math.round(amount*(cgst/100));
 
@@ -60,7 +60,51 @@ function calcTax(amount){
 		$('#h_igst').val(igst);
 	}
 }
+function EditcalcTax(amount){
+	amount = parseInt(amount);
+	
+	var amount1 = parseInt($('#amount1').val());
+	var amount2 = parseInt($('#amount2').val());
+	var amount3 = parseInt($('#amount3').val());
+	var amount = amount1 + amount2 + amount3;
 
+	$('#sub_total').val(amount);
+	
+	var placeoforder = $('#place_of_supply').val();
+	if(placeoforder == "Maharashtra"){
+		var cgst = 9/2;
+	    var CGST_Amount = Math.round(amount*(cgst/100));
+
+	    var sgst = 9/2;
+	  	var SGST_Amount = Math.round(amount*(sgst/100));
+		$('#cgst').val(CGST_Amount);
+		$('#sgst').val(SGST_Amount);
+		var total =CGST_Amount+SGST_Amount;
+		
+		
+		$('#total_tax').val(total);
+		
+		$('#total_amount').val(Math.round(CGST_Amount+SGST_Amount+amount));
+		
+		$('#igst').val(0);
+	}else{
+		$('#cgst').val(0);
+		$('#sgst').val(0);
+		
+		var igst = 18/2;
+		var IGST_Amount = amount*(igst/100);
+		var igst = IGST_Amount;
+		
+		$('#total_tax').val(igst);
+
+		var totalAmount = igst + amount;
+		var round_igst=Math.round(IGST_Amount);
+		
+		$('#total_amount').val(totalAmount);
+		$('#igst').val(igst);
+		
+	}
+}
 function submitInvoice(){
 
 	/*var flag = true;
@@ -208,7 +252,7 @@ function editInvoice(){
 			console.log(response);
 			if(response.code == 200){
 				alert(response.message);
-				location.reload();
+				/*location.reload();*/
 			}else{
 				alert(response.message);
 			}

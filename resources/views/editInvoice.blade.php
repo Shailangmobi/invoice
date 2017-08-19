@@ -38,7 +38,7 @@
         </tr>
         </table>
 		<table id="table-bordered" style="width:100%;">
-		<input type="hidden" name="id" id="id" value="{{$data[0]->id}}">
+		<input type="hidden" name="id" id="id" value="{{$data[0]->customer_id}}">
 		
 
 			<tr>
@@ -101,8 +101,10 @@
 		<tr style="height:150px;">
 		<td id="table_td">1.</td>
 		<td id="table_td">
+		@php ($i = 1)
 		@foreach($data as $data2)
-		<input id="product" name="product" value="{{$data2->product}}"><br>
+		<input id="product{{$i}}" name="product{{$i}}" value="{{$data2->product}}"><br>
+		@php ($i++)
 		@endforeach
 			</td>
 
@@ -135,9 +137,9 @@
         </td>
 		<td id="table_td">
 		Rs:-<input type="text" name="cgst" id="cgst" value="{{$data[0]->cgst}}" ><br>
-      
-        Rs:-<input type="text" name="igst" id="igst" value="{{$data[0]->sgst}}" ><br>
-        Rs:-<input type="text" name="sgst" id="sgst" value="{{$data[0]->igst}}" >
+      	
+        Rs:-<input type="text" name="sgst" id="sgst" value="{{$data[0]->sgst}}" ><br>
+        Rs:-<input type="text" name="igst" id="igst" value="{{$data[0]->igst}}" ><br>
 		</tr>
         
         

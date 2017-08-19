@@ -34,9 +34,19 @@
                 <a href="addUser"> <span class="nav-label">Add Users</span><span class="label label-warning pull-right">NEW</span></a>
             </li>
             <li>
+                <a href="addCompanyProfile"> <span class="nav-label">Company's Profile</span></a>
+            </li>
+            <li>
                 <a href="#"><span class="nav-label">Interface</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="create_invocie">Create Invoice</a></li>
+                   
+                </ul>
+            </li>
+              <li>
+                <a href="#"><span class="nav-label">Customer</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                    <li><a href="viewCustomer">View Customer</a></li>
                    
                 </ul>
             </li>
