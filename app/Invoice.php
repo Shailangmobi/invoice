@@ -27,7 +27,7 @@ class Invoice extends Model
 			}
 				
 		
-		} catch (\Exception $e) {
+		} catch (Exception $e) {
 				$message['code']= 401 ;
 				$message['status']= "Exception Caought" ;
 				$message['message']= "There was an ERROR !";
