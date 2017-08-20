@@ -14,6 +14,10 @@ Route::get('/addUser', function () {
 return view('addUser');
 });
 
+Route::get('/', function () {
+return view('login');
+});
+
 Route::get('/addCompanyProfile', function () {
 return view('addProfile');
 });
@@ -31,7 +35,7 @@ Route::get('viewCustomer', [
 'as' => '/viewCustomer', 'uses' => 'Api\V1\UserController@viewCustomer'
 ]);
 
-Route::get('/', [
+Route::get('/viewInvoice', [
 'as' => '/', 'uses' => 'Api\V1\UserController@viewInvoice'
 ]);
 
@@ -42,6 +46,10 @@ Route::get('/invoice', [
 Route::get('pdfview/{id}',array('as'=>'pdfview','uses'=>'Api\V1\UserController@pdfview'));
 
 Route::get('edit/{id}',array('as'=>'/','uses'=>'Api\V1\UserController@edit'));
+
+$api->version('v1', function ($api) {
+	$api->post('login','App\Http\Controllers\Api\V1\UserController@login');
+});
 
 $api->version('v1', function ($api) {
 	$api->post('insertInvoice','App\Http\Controllers\Api\V1\UserController@insertInvoice');

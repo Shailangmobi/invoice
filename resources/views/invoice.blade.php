@@ -2,6 +2,15 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
 <script src="vendor/jquery/dist/jquery.min.js"></script>
 <script src="app/js/invoice.js"></script>
+<script src="{{URL::asset('app/jquery.cookie.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('app/jquery.validate.js')}}"></script>
+<script type="text/javascript">
+	 if (typeof $.cookie('tokenId') === 'undefined' && typeof $.cookie('tokenUsername') === 'undefined'){
+          
+       window.location.href = "/";
+        
+   		} 
+</script>
 
 		  <head>
           
@@ -133,7 +142,7 @@
 
 
 		<tr>
-       <td id="table_td" rowspan="5" ></td>
+       <td id="table_td" rowspan="7" ></td>
         
 		<td id="table_td" colspan="2" style="text-align:right">Sub total</td>
 		<td id="table_td">Rs:-<input type="hidden" name="h_Sub_amount" id="h_Sub_amount"><span id="Sub_amount" name="Sub_amount"></span></td>
@@ -172,7 +181,23 @@
 		</tr>
         
 		<tr>
-		<td colspan="4" id="table_td" align="left"> Rupees: Ten thousand six hunderd and twenty rupees Only/-</td>
+		<td colspan="4" id="table_td" align="left"> Rupees: </td>
+		</tr>
+		<tr>
+		<td colspan="4" id="table_td" align="left">
+		<strong>Company Name:</strong><span>Mobisoft Technology India Pvt Ltd.</span><br>
+		<strong>Bank Name:</strong><span>ICICI Bank</span><br>
+		<strong>Account No:</strong><span>015105012883</span><br>
+		<strong>RTGS/NEFT/IFSC/CODE:</strong><span>ICIC0000151</span>
+		</td>
+		</tr>
+		<tr>
+		<td colspan="4" id="table_td" align="left">
+		<strong>Company Name:</strong><span>Mobisoft Technology India Pvt Ltd.</span><br>
+		<strong>Bank Name:</strong><span>Central Bank of India Details</span><br>
+		<strong>Account No:</strong><span>3497063665</span><br>
+		<strong>RTGS/NEFT/IFSC/CODE:</strong><span>CBIN0283154</span>
+		</td>
 		</tr>
 
 		</table>

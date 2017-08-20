@@ -1,4 +1,5 @@
 $(function(){
+	
 	$('#submitCustomer').click(function(){
 		var data = $('#loginForm').serialize();
 		alert(data);

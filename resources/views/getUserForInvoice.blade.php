@@ -4,6 +4,13 @@
 
 @section('content')
 <script src="app/js/invoice.js"></script>
+<script type="text/javascript">
+       if (typeof $.cookie('tokenId') === 'undefined' && typeof $.cookie('tokenUsername') === 'undefined'){
+        //no cookie         
+       window.location.href = "/";
+        
+    } 
+</script>
 
     <div id="wrapper">
 

@@ -1,4 +1,12 @@
 $(function(){
+	if (typeof $.cookie('tokenId') === 'undefined' && typeof $.cookie('tokenUsername') === 'undefined'){
+        //no cookie         
+       window.location.href = "/";
+        
+    } else {
+        //alert("Login: have cookie----"+$.cookie('token'));
+       
+    }
 	$('#example2').DataTable();
 	$('#update').click(function(){
 

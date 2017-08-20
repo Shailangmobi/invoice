@@ -4,7 +4,13 @@
 @section('title', 'Content')
 
 @section('content')
-
+<script type="text/javascript">
+       if (typeof $.cookie('tokenId') === 'undefined' && typeof $.cookie('tokenUsername') === 'undefined'){
+        //no cookie         
+       window.location.href = "/";
+        
+    } 
+</script>
 <!-- Main Wrapper -->
 <div id="wrapper">
 
@@ -59,7 +65,7 @@
                                     <td>{{$value->status}}</td>
                                     <td class="footable-visible footable-last-column">
                                         <div class="btn-group">
-                                            <a class='btn btn-sm btn-info' data-toggle='modal' href="pdfview/{{$value->id}}">PDF</a>
+                                            <a class='btn btn-sm btn-info' data-toggle='modal' href="pdfview/{{$value->invoice}}">PDF</a>
                                         </div>
                                          <div class="btn-group">
                                             <a class='btn btn-sm btn-success' data-toggle='modal' href="edit/{{$value->invoice}}">Edit</a>

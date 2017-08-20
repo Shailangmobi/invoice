@@ -17,7 +17,17 @@ use PDF;
 class UserController extends Controller
 {
     //
-     public function insertInvoice(Request $request){
+
+    public function login(Request $request){
+
+        $input = $request->all();
+
+        $insert = Invoice::login($input);
+        return $insert;
+
+    }
+
+    public function insertInvoice(Request $request){
 
     	$input = $request->all();
 
@@ -129,9 +139,10 @@ class UserController extends Controller
     public function pdfview(Request $request,$id)
     {
        
-        $items = DB::table("invoice")->where('id','=',$id)->get();
-       
+        $items = DB::table("invoice")->where('invoice','=',$id)->get();
+        $data = DB::table("company_master")->where('status','=',1)->get();
         view()->share('invoices',$items);
+        view()->share('data',$data);
         $pdf = PDF::loadView('pdf.pdfView');
 
         

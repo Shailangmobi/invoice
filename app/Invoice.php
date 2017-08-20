@@ -7,6 +7,38 @@ use DB;
 class Invoice extends Model
 {
     //
+	public static function login($data)
+    {
+        
+		try {
+			$insertDetails = DB::table('admin')
+			->where('username','=',$data['username'])
+			->where('password','=',$data['password'])
+			->get();
+			if(sizeof($insertDetails) > 0 ){
+				$message['code']= 200 ;
+				$message['status']= "Success" ;
+				$message['message']= "data found !";
+				$message['data']= $insertDetails;
+				return response()->json($message);
+			}else{
+				$message['code']= 400 ;
+				$message['status']= "Failed" ;
+				$message['message']= "data not found !";
+				return response()->json($message);
+			}
+				
+		
+		} catch (\Exception $e) {
+				$message['code']= 401 ;
+				$message['status']= "Exception Caought" ;
+				$message['message']= "There was an ERROR !";
+				return response()->json($message);
+		}
+		
+		
+
+    }
 
     public static function insertCustomer($data)
     {
