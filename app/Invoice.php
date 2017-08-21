@@ -101,6 +101,7 @@ class Invoice extends Model
     }
     public static function insertInvoiceData($data)
     {
+
         $insertData['gstin'] = $data['GSTIN'];
         $insertData['name'] = $data['name'];
         $company = DB::table('company')->select('company_name')->where('id','=',$data['company'])->get();
@@ -109,7 +110,7 @@ class Invoice extends Model
 		$insertData['invoice'] = $data['invoice'];
 		
 		$insertData['amount'] = $data['amount1'];
-		$insertData['product'] = $data['product'];
+		$insertData['product'] = $data['product1'];
 		$insertData['place_of_supply'] = $data['place_of_supply'];
 		$insertData['date'] = $data['date'];
 		$insertData['sub_total'] = $data['h_Sub_amount'];
@@ -121,27 +122,34 @@ class Invoice extends Model
 		$insertData['user_id'] = "21";
 		$insertData['customer_id'] = $data['id'];
 		try {
-			if($data['amount1'] != 0 || $data['amount1'] != "" || $data['amount1'] != null){
+			if($data['amount1'] != "" && $data['product1'] != ""){
+				
 				$insertDetails = DB::table('invoice')->insert($insertData);
 			}
-			if($data['amount2'] != 0 || $data['amount2'] != "" || $data['amount2'] != null) {
+			if($data['amount1'] != ""|| $data['amount2'] != "" || $data['amount2'] != null) {
+				return $$data['amount1'];
 				$insertData['amount'] = $data['amount2'];
 				$insertData['product'] = $data['product2'];
+				
+				
 				$insertDetails = DB::table('invoice')->insert($insertData);
 			}
-			if ($data['amount3'] != 0 || $data['amount3'] != "" || $data['amount3'] != null) {
+			if ($data['amount3'] != 0 && $data['product3'] != "") {
 				$insertData['product'] = $data['product3'];
 				$insertData['amount'] = $data['amount3'];
+				
 				$insertDetails = DB::table('invoice')->insert($insertData);
 			}
-			if ($data['amount4'] != 0 || $data['amount4'] != "" || $data['amount4'] != null) {
+			if ($data['amount4'] != 0 && $data['product4'] != "") {
 				$insertData['product'] = $data['product4'];
 				$insertData['amount'] = $data['amount4'];
+				
 				$insertDetails = DB::table('invoice')->insert($insertData);
 			}
-			if ($data['amount5'] != 0 || $data['amount5'] != "" || $data['amount5'] != null) {
+			if ($data['amount5'] != 0  && $data['product5'] != "") {
 				$insertData['product'] = $data['product5'];
 				$insertData['amount'] = $data['amount5'];
+				
 				$insertDetails = DB::table('invoice')->insert($insertData);
 			}
 			

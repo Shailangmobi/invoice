@@ -110,9 +110,9 @@
 							        </div>
 							    </div>
 	   							<div class="row">
-								        <div class="col-md-12 text-center">
+								      <!--   <div class="col-md-12 text-center">
 								            <strong>HOMER</strong> - AngularJS Responsive WebApp <br/> 2015 Copyright Company Name
-								        </div>
+								        </div> -->
 								</div>
 							</div> 
                         </div>

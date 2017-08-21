@@ -13,11 +13,11 @@
                         <small class="text-muted">A product of Mobisofttech Pvt Ltd<b class="caret"></b></small>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a href="contacts.html">Contacts</a></li>
+                       <!--  <li><a href="contacts.html">Contacts</a></li>
                         <li><a href="profile.html">Profile</a></li>
                         <li><a href="analytics.html">Analytics</a></li>
                         <li class="divider"></li>
-                        <li><a href="login.html">Logout</a></li>
+                        <li><a href="login.html">Logout</a></li> -->
                     </ul>
                 </div>
 
@@ -28,18 +28,19 @@
 
         <ul class="nav" id="side-menu">
             <li class="active">
-                <a href="index-2.html"> <span class="nav-label">Dashboard</span> <span class="label label-success pull-right">v.1</span> </a>
+                <a href="viewInvoice"> <span class="nav-label">Dashboard</span> <span class="label label-success pull-right">v.1</span> </a>
             </li>
-            <li>
+           <!--  <li>
                 <a href="addUser"> <span class="nav-label">Add Users</span><span class="label label-warning pull-right">NEW</span></a>
+            </li> -->
+            <li>
+                <a href="addCompanyProfile"> <span class="nav-label">Add Company's Profile</span></a>
             </li>
             <li>
-                <a href="addCompanyProfile"> <span class="nav-label">Company's Profile</span></a>
-            </li>
-            <li>
-                <a href="#"><span class="nav-label">Interface</span><span class="fa arrow"></span> </a>
+                <a href="#"><span class="nav-label">Invoice</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="create_invocie">Create Invoice</a></li>
+                     <li><a href="viewInvoice">View Invoice</a></li>
                    
                 </ul>
             </li>
@@ -47,7 +48,9 @@
                 <a href="#"><span class="nav-label">Customer</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="viewCustomer">View Customer</a></li>
-                   
+                     <li>
+                    <a href="addUser">Add Customer</a>
+            </li>
                 </ul>
             </li>
             

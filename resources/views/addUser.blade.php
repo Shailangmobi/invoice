@@ -78,26 +78,7 @@
 							                                <label>gistin</label>
 							                                <input type="text" value="" id="gistin" class="form-control" name="gistin" placeholder="provide gistin..">
 							                            </div>
-							                          <!--   <div class="form-group col-lg-6">
-							                                <label>bank_name</label>
-							                                <input type="text" value="" id="" class="form-control" name="" placeholder="provide bank name..">
-							                            </div>
-							                             <div class="form-group col-lg-6">
-							                                <label>account_no</label>
-							                                <input type="text" value="" id="" class="form-control" name="" placeholder="provide account no..">
-							                            </div>
-							                             <div class="form-group col-lg-6">
-							                                <label>ifsc_code</label>
-							                                <input type="text" value="" id="" class="form-control" name="" placeholder="provide ifsc code .. ">
-							                            </div>
-							                             <div class="form-group col-lg-6">
-							                                <label>account_name</label>
-							                                <input type="text" value="" id="" class="form-control" name="" placeholder="provide account name..">
-							                            </div> -->
-							                           <!--  <div class="checkbox col-lg-12">
-							                                <input type="checkbox" class="i-checks" checked>
-							                                Sigh up for our newsletter
-							                            </div> -->
+							                         
 							                            </div>
 							                            <div class="text-center">
 							                                <button type="button" id="submitCustomer" class="btn btn-success">Register</button>
@@ -109,9 +90,7 @@
 							        </div>
 							    </div>
 	   							<div class="row">
-								        <div class="col-md-12 text-center">
-								            <strong>HOMER</strong> - AngularJS Responsive WebApp <br/> 2015 Copyright Company Name
-								        </div>
+								       
 								</div>
 							</div> 
                         </div>

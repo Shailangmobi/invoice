@@ -1,5 +1,5 @@
 $(function(){
- 
+ 	
 	var now = new Date();
     var day = ("0" + now.getDate()).slice(-2);
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
@@ -10,6 +10,7 @@ $(function(){
 	$('#submitInvoice').click(function(){
 		submitInvoice();
 	});
+
 });
 function placeOfSup(str){
 		
@@ -21,7 +22,9 @@ function calcTax(amount){
 	var amount1 = parseInt($('#amount1').val());
 	var amount2 = parseInt($('#amount2').val());
 	var amount3 = parseInt($('#amount3').val());
-	var amount = amount1 + amount2 + amount3;
+	var amount4 = parseInt($('#amount4').val());
+	var amount5 = parseInt($('#amount5').val());
+	var amount = amount1 + amount2 + amount3 +amount4 +amount5;
 	$('#h_Sub_amount').val(amount);
 	$('#Sub_amount').text(amount);
 	var placeoforder = $('#place_of_supply').val();
@@ -67,7 +70,30 @@ function EditcalcTax(amount){
 	var amount1 = parseInt($('#amount1').val());
 	var amount2 = parseInt($('#amount2').val());
 	var amount3 = parseInt($('#amount3').val());
-	var amount = amount1 + amount2 + amount3;
+	var amount4 = parseInt($('#amount4').val());
+	var amount5 = parseInt($('#amount5').val());
+	if(isNaN(amount1))
+	{
+		
+		amount1 = 0 ;
+	}
+	if(isNaN(amount2))
+	{
+		amount2 = 0 ;
+	}
+	if(isNaN(amount3))
+	{
+		amount3 = 0 ;
+	}
+	if(isNaN(amount4))
+	{
+		amount4 = 0 ;
+	}
+	if(isNaN(amount5))
+	{
+		amount5 = 0 ;
+	}
+	var amount = amount1 + amount2 + amount3 +amount4 +amount5;
 
 	$('#sub_total').val(amount);
 	
@@ -108,11 +134,35 @@ function EditcalcTax(amount){
 }
 function submitInvoice(){
 
-	/*var flag = true;
-	flag = $("#forgotForm").valid();
-	if(flag==false){
-		return false;
-	}*/
+	var checkSelect = '';
+	$(".mySelect option:selected").each(function(i) {
+		
+	    checkSelect += this.value;	
+	    var checkClass = $(this).data('amt');		   
+	    
+	    var amount_check = $('.product'+checkClass).val();
+	    if( amount_check == '' || amount_check == 0 ){
+	    	alert('Please enter amount');
+	    	return false;
+	    }
+	});
+
+	if(checkSelect == ''){
+		alert('Please select product');
+	}
+	//alert(checkSelect);
+	//return false;
+
+	var flag = true;
+	if(!$('#product1').val() == ""){
+		
+	}
+	else {
+	  alert('Please Select atleast one product');
+	    return false;
+	}
+	
+	return false;
 	var data = $('#invoiceForm').serialize();
 	alert(data);
 
@@ -129,6 +179,7 @@ function submitInvoice(){
 		success:function(response){
 			
 			console.log(response);
+			return false;
 			if(response.code == 200){
 				alert(response.message);
 				window.location.href = "/";
@@ -264,3 +315,32 @@ function editInvoice(){
 		}
 	});
 }
+ function displayAmount(){
+ 	if(!$('#product1').val() == ""){
+		$('#amount1').show();
+	   
+	   
+	}
+	
+	if(!$('#product2').val() == ""){
+		$('#amount2').show();
+	   
+	   
+	}
+	if(!$('#product3').val() == ""){
+		$('#amount3').show();
+	   
+	   
+	}
+	if(!$('#product4').val() == ""){
+		$('#amount4').show();
+	   
+	   
+	}
+	if(!$('#product5').val() == ""){
+		$('#amount5').show();
+	   
+	   
+	}
+	
+ }

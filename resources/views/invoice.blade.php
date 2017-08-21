@@ -116,11 +116,12 @@
 		<td id="table_td">
 		@php ($i = 1)
 		@foreach($product as $products)
-		<select id="product{{$i}}" name="product{{$i}}">
+		<select class="mySelect" id="product{{$i}}" name="product{{$i}}" onchange="displayAmount();">
+		@php ($j=$i)
 		@php ($i++)
 			<option value="">Select</option>
 			@foreach($product as $name)
-			<option value="{{$name->product_name}}">{{$name->product_name}}</option>
+			<option data-amt="{{$j}}" value="{{$name->product_name}}">{{$name->product_name}}</option>
 				
 			@endforeach
 		</select><br>
@@ -130,10 +131,10 @@
 
         <td id="table_td">998413</td>
 		
-		<td>
+		<td class = "myamount">
 		@php ($i = 1)
 		@foreach($product as $product)
-		Rs:-<input type="text" id="amount{{$i}}" name="amount{{$i}}" value="0" onchange="calcTax(this.value);"><br>
+		Rs:-<input type="text" class="product{{$i}}" id="amount{{$i}}" name="amount{{$i}}" value="0" style="display:none;" onchange="calcTax(this.value);"><br>
 		@php ($i++)
 		@endforeach
 		</td>

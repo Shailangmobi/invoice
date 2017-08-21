@@ -4,7 +4,7 @@ $(function(){
       
         
     }else{
-    	 window.location.href = "viewInvoice";
+    	 window.location.href = "dashboard";
     }
 $('#loginSubmit').click(function(){
 		login();
@@ -47,7 +47,7 @@ function login(){
 	                    expires : date
 	                });
 
-	                 window.location.href = "viewInvoice";
+	                 window.location.href = "dashboard";
                
 				}else{
 					alert(response.message);

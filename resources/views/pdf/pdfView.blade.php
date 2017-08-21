@@ -2,7 +2,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="app/js/invoice.js"></script>
 <head>
-          
+         
 		  <style>
 		  
 			  #table_td{				  
@@ -103,7 +103,7 @@
         <td id="table_td">998413</td>
         	<td>
 		@foreach ($invoices as $amount)
-			Rs:-<span>{{$amount->amount}}</span><br>
+			Rs:-{{$amount->amount}}<br>
 		@endforeach
 		</td>
 		</tr>

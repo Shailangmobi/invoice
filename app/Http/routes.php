@@ -14,6 +14,10 @@ Route::get('/addUser', function () {
 return view('addUser');
 });
 
+Route::get('/dashboard', function () {
+return view('dashboard');
+});
+
 Route::get('/', function () {
 return view('login');
 });
