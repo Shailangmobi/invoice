@@ -103,7 +103,7 @@
         <td id="table_td">998413</td>
         	<td>
 		@foreach ($invoices as $amount)
-			Rs:-{{$amount->amount}}<br>
+			{{$amount->amount}}<br>
 		@endforeach
 		</td>
 		</tr>
@@ -114,7 +114,7 @@
        <td id="table_td" rowspan="5" ></td>
         
 		<td id="table_td" colspan="2" style="text-align:right">Sub total</td>
-		<td><span >Rs:-{{$invoices[0]->sub_total}}</span></td>
+		<td><span >{{$invoices[0]->sub_total}}</span></td>
 		</tr>
         
         <tr>
@@ -126,9 +126,9 @@
         IGST : 18%
         </td>
 		<td id="table_td">
-		Rs:-<span id="cgst" name="cgst">{{$invoices[0]->cgst}}</span><br>
-        Rs:-<span id="sgst" name="sgst">{{$invoices[0]->sgst}}</span><br>
-        Rs:-<span id="igst" name="isgst">{{$invoices[0]->igst}}</span>
+		<span id="cgst" name="cgst">{{$invoices[0]->cgst}}</span><br>
+        <span id="sgst" name="sgst">{{$invoices[0]->sgst}}</span><br>
+        <span id="igst" name="isgst">{{$invoices[0]->igst}}</span>
 		</tr>
         
         
@@ -137,14 +137,14 @@
         
         
 		<td colspan="2" style="text-align:right">GST TAX Total</td>
-		<td id="table_td" >Rs:-<span id="total_tax" name="total_tax">{{$invoices[0]->total_tax}}</span></td>
+		<td id="table_td" ><span id="total_tax" name="total_tax">{{$invoices[0]->total_tax}}</span></td>
 		</tr>
 		
         <tr>
         
         
 		<td id="table_td" colspan="2" style="text-align:right">Total Amount</td>
-		<td id="table_td">Rs:-
+		<td id="table_td">
 		<span id="total_amount" name="total_amount">{{$invoices[0]->total_amount}}</span>
 		</td>
 		</tr>
@@ -152,17 +152,15 @@
 		<td colspan="4" id="table_td" align="left"> Rupees: <?php echo convert_number($invoices[0]->total_amount);?></td>
 		</tr>
 		<tr>
-		<td colspan="3" id="table_td" align="left">
+		<td colspan="4" id="table_td" align="left">
 		<strong>Company Name:</strong><span>Mobisoft Technology India Pvt Ltd.</span><br>
 		<strong>Bank Name:</strong><span>ICICI Bank</span><br>
 		<strong>Account No:</strong><span>015105012883</span><br>
 		<strong>RTGS/NEFT/IFSC/CODE:</strong><span>ICIC0000151</span>
 		</td>
-		<td id="table_td" rowspan="2">Authorized Signature</td>
 		</tr>
-
 		<tr>
-		<td colspan="3" id="table_td" align="left">
+		<td colspan="4" id="table_td" align="left">
 		<strong>Company Name:</strong><span>Mobisoft Technology India Pvt Ltd.</span><br>
 		<strong>Bank Name:</strong><span>Central Bank of India Details</span><br>
 		<strong>Account No:</strong><span>3497063665</span><br>
@@ -171,12 +169,20 @@
 		</tr>
 
 		</table>
-		<center><p></p></center>
-	
+
+
+		
+
+
+		<center><p>This is Computer Generated Invoice.</p></center>
+		
+
+		
+		<!-- <button type="button" id="submitInvoice">Submit</button> -->
 		</form>
 		</body>
 		</html>
-<?php 
+	<?php 
 
 function convert_number($number) 
 { 

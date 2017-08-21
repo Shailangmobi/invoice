@@ -22,9 +22,12 @@ Route::get('/', function () {
 return view('login');
 });
 
-Route::get('/addCompanyProfile', function () {
+/*Route::get('/addCompanyProfile', function () {
 return view('addProfile');
-});
+});*/
+Route::get('/addCompanyProfile', [
+	    'as' => '/addCompanyProfile', 'uses' => 'Api\V1\UserController@getCompanyProfile'
+]);
 
 /*Route::get('/create_invocie', function () {
 return view('getUserForInvoice');
@@ -43,13 +46,19 @@ Route::get('/viewInvoice', [
 'as' => '/', 'uses' => 'Api\V1\UserController@viewInvoice'
 ]);
 
+
 Route::get('/invoice', [
 	    'as' => '/', 'uses' => 'InvoicController@getCount'
 ]);
 
 Route::get('pdfview/{id}',array('as'=>'pdfview','uses'=>'Api\V1\UserController@pdfview'));
 
-Route::get('edit/{id}',array('as'=>'/','uses'=>'Api\V1\UserController@edit'));
+Route::get('edit/{id}',array('as'=>'/edit','uses'=>'Api\V1\UserController@edit'));
+
+/*Route::get('mail/{id}',array('as'=>'/mail','uses'=>'Api\V1\UserController@mail'));*/
+$api->version('v1', function ($api) {
+	$api->get('mail/{id}','App\Http\Controllers\Api\V1\UserController@mail');
+});
 
 $api->version('v1', function ($api) {
 	$api->post('login','App\Http\Controllers\Api\V1\UserController@login');
@@ -61,6 +70,10 @@ $api->version('v1', function ($api) {
 
 $api->version('v1', function ($api) {
 	$api->post('addProfile','App\Http\Controllers\Api\V1\UserController@addProfile');
+});
+
+$api->version('v1', function ($api) {
+	$api->post('updateProfile','App\Http\Controllers\Api\V1\UserController@updateProfile');
 });
 
 $api->version('v1', function ($api) {

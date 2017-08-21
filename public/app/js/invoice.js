@@ -45,6 +45,8 @@ function calcTax(amount){
 		$('#h_cgst').val(Math.round(CGST_Amount));
 		$('#h_sgst').val(Math.round(CGST_Amount));
 		$('#igst').text("");
+		
+
 	}else{
 		$('#cgst').text("");
 		$('#sgst').text("");
@@ -63,6 +65,7 @@ function calcTax(amount){
 		$('#igst').text(igst);
 		$('#h_igst').val(igst);
 	}
+
 }
 function EditcalcTax(amount){
 	amount = parseInt(amount);
@@ -129,6 +132,7 @@ function EditcalcTax(amount){
 		
 		$('#total_amount').val(totalAmount);
 		$('#igst').val(igst);
+
 		
 	}
 }
@@ -182,7 +186,7 @@ function submitInvoice(){
 			return false;
 			if(response.code == 200){
 				alert(response.message);
-				window.location.href = "/";
+				window.location.href = "/viewInvoice";
 			}else{
 				alert(response.message);
 			}
@@ -304,7 +308,7 @@ function editInvoice(){
 			console.log(response);
 			if(response.code == 200){
 				alert(response.message);
-				/*location.reload();*/
+				 window.location.href = "/viewInvoice";
 			}else{
 				alert(response.message);
 			}
@@ -315,32 +319,63 @@ function editInvoice(){
 		}
 	});
 }
- function displayAmount(){
+
+function displayAmount(){
  	if(!$('#product1').val() == ""){
-		$('#amount1').show();
+		$('#amount1').css('visibility','visible');
 	   
 	   
 	}
 	
 	if(!$('#product2').val() == ""){
-		$('#amount2').show();
+		$('#amount2').css('visibility','visible');
 	   
 	   
 	}
 	if(!$('#product3').val() == ""){
-		$('#amount3').show();
+		$('#amount3').css('visibility','visible');
 	   
 	   
 	}
 	if(!$('#product4').val() == ""){
-		$('#amount4').show();
+		$('#amount4').css('visibility','visible');
 	   
 	   
 	}
 	if(!$('#product5').val() == ""){
-		$('#amount5').show();
+		$('#amount5').css('visibility','visible');
 	   
 	   
 	}
 	
- }
+}
+
+function mailInvoice(id){
+ 	alert(id);
+ 	$.ajax({
+		
+		"url":"/api/mail/"+id,
+		"method":"GET",
+		
+		
+		"dataType":"JSON",
+		beforeSend:function(){
+		
+		},
+		success:function(response){
+			
+			console.log(response);
+			if(response.code == 200){
+				alert(response.message);
+				 window.location.href = "/viewInvoice";
+			}else{
+				alert(response.message);
+			}
+		},
+		complete:function(){
+			
+		
+		}
+	});
+}
+

@@ -28,29 +28,28 @@
 
         <ul class="nav" id="side-menu">
             <li class="active">
-                <a href="viewInvoice"> <span class="nav-label">Dashboard</span> <span class="label label-success pull-right">v.1</span> </a>
+                <a href="/viewInvoice"> <span class="nav-label">Dashboard</span> <span class="label label-success pull-right">v.1</span> </a>
             </li>
            <!--  <li>
                 <a href="addUser"> <span class="nav-label">Add Users</span><span class="label label-warning pull-right">NEW</span></a>
             </li> -->
             <li>
-                <a href="addCompanyProfile"> <span class="nav-label">Add Company's Profile</span></a>
+                <a href="/addCompanyProfile"> <span class="nav-label">Add Company's Profile</span></a>
             </li>
             <li>
                 <a href="#"><span class="nav-label">Invoice</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="create_invocie">Create Invoice</a></li>
-                     <li><a href="viewInvoice">View Invoice</a></li>
+                    <li><a href="/create_invocie">Create Invoice</a></li>
+                     <li><a href="/viewInvoice">View Invoice</a></li>
                    
                 </ul>
             </li>
               <li>
                 <a href="#"><span class="nav-label">Customer</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="viewCustomer">View Customer</a></li>
-                     <li>
-                    <a href="addUser">Add Customer</a>
-            </li>
+                   
+                    <li><a href="/addUser">Add Customer</a></li>
+                    <li><a href="/viewCustomer">View Customer</a></li>
                 </ul>
             </li>
             

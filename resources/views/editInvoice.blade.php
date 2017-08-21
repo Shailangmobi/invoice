@@ -1,9 +1,18 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
-<script src="../vendor/jquery/dist/jquery.min.js"></script>
-<script src="../app/js/invoice.js"></script>
+@extends('index')
 
-		  <head>
+@section('title', 'CreateInvoice')
+
+@section('content')
+
+<script src="../app/js/invoice.js"></script>
+<script type="text/javascript">
+	 if (typeof $.cookie('tokenId') === 'undefined' && typeof $.cookie('tokenUsername') === 'undefined'){
+          
+       window.location.href = "/";
+        
+   		} 
+</script>
+	
           
 		  <style>
 		  
@@ -26,15 +35,19 @@
 				 font-size:2em;
 			 }
 		</style>
-		  </head>
-
-
-		<body>
+		<div id="wrapper">
+	<div class="content animate-panel">
+	<div class="row">
+	 <div class="col-lg-12">
+                <div class="hpanel">
+                 <div class="panel-body">
+                        <div class="row">
+        
         <br><br><br><br><br>
         <form id="invoiceForm">
         <table id="table-bordered"  style="width:100%;">
         <tr>
-        <td id="headtxt">INVOICE</td>
+        <td id="headtxt">INVOICE EDIT</td>
         </tr>
         </table>
 		<table id="table-bordered" style="width:100%;">
@@ -43,38 +56,37 @@
 
 			<tr>
 				<td id="table_td"  rowspan="2"><strong>Customer Details:-</strong><br>
-                Company Name:<input id="company_name" name="company_name" value="{{$data[0]->company_name}}">
+                Company Name:<input class = "form-control" id="company_name" name="company_name" value="{{$data[0]->company_name}}">
                 				
                 					
                 				
                 			  <br>
-				Customer Name:<input type="text" id="name" name="name" value="{{$data[0]->name}}"><br>
-				Address:<input type="textarea" id="address" name="address" value="{{$data[0]->address}}">
+				Customer Name:<input class = "form-control"  type="text" id="name" name="name" value="{{$data[0]->name}}"><br>
+				Address:<textarea class = "form-control"  type="text" id="address" name="address" value="{{$data[0]->address}}">{{$data[0]->address}}</textarea> 
 				</td>
 
-				<td id="table_td" >Invoice no:-<input readonly="" id="invoice" name="invoice" value="{{$data[0]->invoice}}"></td>
+				<td id="table_td" >Invoice no:-<input class = "form-control"  readonly="" id="invoice" name="invoice" value="{{$data[0]->invoice}}"></td>
 
-				<td id="table_td" rowspan="2" ><strong>SMARTFIN Corporate Advisors Pvt Ltd</strong><br>
-				Add : H-004, Platform level, Railway station complex<br>
-				CBD Belapur, Navi Mumbai - 400614<br>
-				Email : Smartfincorporate@gmail.com<br>
-				Tel No: 022-27561324/25<br>
-                <strong>CIN No</strong>.: U74900MH2011PTC216001
+					<td id="table_td" rowspan="2" ><strong>{{$company[0]->company_name}}</strong><br>
+				Address :{{$company[0]->company_address}}<br>
+				Email :  {{$company[0]->email}}<br>
+				Tel No:  {{$company[0]->phone}}<br>
+                <strong>CIN No</strong>.:  {{$company[0]->cin}}
                 
 					
                  </td>
 			</tr>
 
-		<tr><td id="table_td">Date:- <input type="text" name="date" id="date" value="{{$data[0]->date}}">
+		<tr><td id="table_td">Date:- <input  class = "form-control"  type="text" name="date" id="date" value="{{$data[0]->date}}">
         </td></tr>
 
 		<tr>
 		
         
-		<td id="table_td"><strong>Customer GSTIN No.</strong>:- <input id="gstin" name="gstin" value="{{$data[0]->gstin}}">
+		<td id="table_td"><strong>Customer GSTIN No.</strong>:- <input  class = "form-control" id="gstin" name="gstin" value="{{$data[0]->gstin}}">
 		</td>
         <td id="table_td">Place of Supply:
-        <input id="place_of_supply" name="place_of_supply" value="{{$data[0]->place_of_supply}}">
+        <input class = "form-control"  id="place_of_supply" name="place_of_supply" value="{{$data[0]->place_of_supply}}">
         </td>
 		<td id="table_td"><strong>GSTIN</strong>: 27AAHC1232C1ZZ<br></td>
 		</tr>
@@ -103,7 +115,15 @@
 		<td id="table_td">
 		@php ($i = 1)
 		@foreach($data as $data2)
-		<input id="product{{$i}}" name="product{{$i}}" value="{{$data2->product}}"><br>
+		<select class = "form-control"  id="product{{$i}}" name="product{{$i}}">
+		<option value="{{$data2->product}}">{{$data2->product}}</option>
+			@foreach($product as $products)
+				<option value="{{$products->product_name}}">{{$products->product_name}}</option>
+			@endforeach
+
+			
+		</select><br>
+		<!-- <input class = "form-control"  id="product{{$i}}" name="product{{$i}}" value="{{$data2->product}}"><br> -->
 		@php ($i++)
 		@endforeach
 			</td>
@@ -113,7 +133,7 @@
 		<td>
 		@php ($i = 1)
 		@foreach($data as $data3)
-		Rs:-<input type="text" name="amount{{$i}}" id="amount{{$i}}" value="{{$data3->amount}}"  onchange="EditcalcTax(this.value);"><br>
+		<input class = "form-control"  type="text" name="amount{{$i}}" id="amount{{$i}}" value="{{$data3->amount}}"  onchange="EditcalcTax(this.value);"><br>
 		@php ($i++)
 		@endforeach</td><br>
 		</tr>
@@ -124,7 +144,7 @@
        <td id="table_td" rowspan="5" ></td>
         
 		<td id="table_td" colspan="2" style="text-align:right">Sub total</td>
-		<td id="table_td"><input type="text" name="sub_total" id="sub_total" value="{{$data[0]->sub_total}}"></td>
+		<td id="table_td"><input  class = "form-control"  type="text" name="sub_total" id="sub_total" value="{{$data[0]->sub_total}}"></td>
 		</tr>
         
         <tr>
@@ -163,6 +183,24 @@
 		<tr>
 		<td colspan="4" id="table_td" align="left"></td>
 		</tr>
+		<tr>
+		<td colspan="3" id="table_td" align="left">
+		<strong>Company Name:</strong><span>Mobisoft Technology India Pvt Ltd.</span><br>
+		<strong>Bank Name:</strong><span>ICICI Bank</span><br>
+		<strong>Account No:</strong><span>015105012883</span><br>
+		<strong>RTGS/NEFT/IFSC/CODE:</strong><span>ICIC0000151</span>
+		</td>
+		<td rowspan="2"></td>
+		</tr>
+		<tr>
+		<td colspan="3" id="table_td" align="left">
+		<strong>Company Name:</strong><span>Mobisoft Technology India Pvt Ltd.</span><br>
+		<strong>Bank Name:</strong><span>Central Bank of India Details</span><br>
+		<strong>Account No:</strong><span>3497063665</span><br>
+		<strong>RTGS/NEFT/IFSC/CODE:</strong><span>CBIN0283154</span>
+		</td>
+
+		</tr>
 
 		</table>
 
@@ -170,12 +208,18 @@
 		
 
 
-		<center><p>This is Computer Generated Invoice.</p></center>
+		<center><p></p></center>
 		
 
-
-		<button type="button" id="submitEdit" onclick="editInvoice();">Submit</button>
+		<center><button class="btn btn-success" type="button" id="submitEdit" onclick="editInvoice();">Submit</button></center>
+		
 		</form>
-		</body>
-		</html>
+		</div>
+	</div>
+		</div>
+	</div>
+		</div>
+	</div>
+</div>		
 		
+@endsection

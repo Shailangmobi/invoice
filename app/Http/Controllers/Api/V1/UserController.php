@@ -52,7 +52,9 @@ class UserController extends Controller
     public function edit($id){
 
         $result = Invoice::getInvoiceById($id);
-            return \View('editInvoice')->with('data',$result);
+        $company = Invoice::getCompanyMasterDetails();
+        $product = DB::table('product_master')->get();
+            return \View('editInvoice')->with('data',$result)->with('company',$company)->with('product',$product);
 
     }
 
@@ -98,10 +100,26 @@ class UserController extends Controller
 
     }
 
+    public function getCompanyProfile(Request $request){
+
+       $input = $request->all();
+       $data = Invoice::getCompanyMasterDetails($input);
+       return \View('addProfile')->with('data',$data);
+
+    }
+
     public function addProfile(Request $request){
 
        $input = $request->all();
        $insert = Invoice::addProfile($input);
+       return  $insert;
+
+    }
+
+    public function updateProfile(Request $request){
+
+       $input = $request->all();
+       $insert = Invoice::updateProfile($input);
        return  $insert;
 
     }
@@ -152,5 +170,47 @@ class UserController extends Controller
         }
         return $pdf->stream('pdfView.pdf');
         return view('pdf.pdfView');
+    }
+
+    public function mail(Request $request,$id)
+    {
+       
+        $items = DB::table("invoice")->where('invoice','=',$id)->get();
+        $data = DB::table("company_master")->where('status','=',1)->get();
+        view()->share('invoices',$items);
+        view()->share('data',$data);
+        $Customer = Invoice::getCustomerById($items[0]->customer_id);
+        if($Customer[0]->email !=""){
+             Mail::send('pdf.mail', ['data' => $Customer], function($message) use ($Customer)
+            {
+                $pdf = PDF::loadView('pdf.inVoice_mail');
+                $message->subject('Mobisoft Tech Pvt Ltd Product Invoice');
+                $message->from('no-reply@mobisofttech.co.in', 'Mobisoft Tech Pvt Ltd!');
+                $message->to($Customer[0]->email);
+                $message->attachData($pdf->output(),'inVoice_mail.pdf');
+            });
+                $response['code'] = 200;
+                $response['status'] ="Success";
+                $response['message'] = "Invoice Mail Forwarded";
+                $response['data'] = $data;
+         }else{
+
+                $response['code'] = 200;
+                $response['status'] ="Success";
+                $response['message'] = "Invoice Mail not ,No email ID found";
+                $response['data'] = $data;
+
+         }
+       
+
+      
+        
+        return response()->json($response);
+        /*if($request->has('download')){
+            $pdf = PDF::loadView('pdf.pdfView');
+            return $pdf->download('pdfView.pdf');
+        }*/
+       /* return $pdf->stream('inVoice_mail.pdf');
+        return view('pdf.pdfView');*/
     }
 }

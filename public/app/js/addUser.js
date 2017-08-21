@@ -37,6 +37,9 @@ $(function(){
 		});
 	});
 
+	$('#updateProfile').click(function(){
+		 updateProfile();
+	});
 	$('#submitProfile').click(function(){
 		 addProfile();
 	});
@@ -193,4 +196,41 @@ function addProfile(){
 			}
 		});
 	
+}
+
+function updateProfile(){
+	var flag = true;
+
+	flag = $("#profile").valid();
+	if(flag==false){
+		alert('All Mandatory Fields are required.');
+		return false;
+	}
+	var data = $('#profile').serialize();
+	
+	$.ajax({
+			
+			"url":"/api/updateProfile",
+			"method":"POST",
+			
+			"data":data,
+			"dataType":"JSON",
+			beforeSend:function(){
+			console.log(data);
+			},
+			success:function(response){
+				
+				console.log(response);
+				if(response.code == 200){
+					alert(response.message);
+					location.reload();
+				}else{
+					alert(response.message);
+				}
+			},
+			complete:function(){
+				
+			
+			}
+		});
 }

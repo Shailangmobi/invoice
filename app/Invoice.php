@@ -99,6 +99,36 @@ class Invoice extends Model
 		
 
     }
+
+    public static function updateProfile($data)
+    {
+        
+		try {
+			$insertDetails = DB::table('company_master')->where('id','=',$data['id'])->update($data);
+			if(sizeof($insertDetails) > 0 ){
+				$message['code']= 200 ;
+				$message['status']= "Success" ;
+				$message['message']= "Profile Data Updated !";
+				
+				return response()->json($message);
+			}else{
+				$message['code']= 400 ;
+				$message['status']= "Failed" ;
+				$message['message']= "Profile Data Not Updated !";
+				return response()->json($message);
+			}
+				
+		
+		} catch (Exception $e) {
+				$message['code']= 401 ;
+				$message['status']= "Exception Caought" ;
+				$message['message']= "There was an ERROR !";
+				return response()->json($message);
+		}
+		
+		
+
+    }
     public static function insertInvoiceData($data)
     {
 
@@ -235,6 +265,15 @@ class Invoice extends Model
     	
     	$result = DB::table('company')->where('status','=',1)
     	->where('id','=',$query)
+    	->get();
+    	return $result;
+    
+    }
+
+    public static function getCompanyMasterDetails(){
+    	
+    	$result = DB::table('company_master')->where('status','=',1)
+    	
     	->get();
     	return $result;
     
