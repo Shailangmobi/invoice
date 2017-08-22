@@ -41,15 +41,17 @@
 
 			<tr>
 				<td id="table_td"  rowspan="2"><strong>Customer Details:-</strong><br>
-                Customer Name:<span>{{$invoices[0]->name}}</span><br>
-				Company Name:<span>{{$invoices[0]->company_name}}</span><br>
-				Address:<span>{{$invoices[0]->address}}</span>
+                <strong>Company Name:</strong><span>{{$invoices[0]->company_name}}</span><br>
+                <strong>Customer Name:</strong><span>{{$invoices[0]->name}}</span><br>
+				
+				<strong>Address:</strong><span>{{$invoices[0]->address}}</span><br>
+				<strong>Mobile:</strong><span>{{$invoices[0]->phone}}</span>
 				</td>
 
 				<td id="table_td" >Invoice no:-<span>{{$invoices[0]->invoice}}</span></td>
 
 				<td id="table_td" rowspan="2" ><strong>{{$data[0]->company_name}}</strong><br>
-				{{$data[0]->company_address}}<br>
+				{{$data[0]->company_address}}<br><br>
                 <strong>CIN No</strong>:{{$data[0]->cin}}
                 
 					
@@ -62,7 +64,7 @@
 		<tr>
 		
         
-		<td id="table_td"><strong>Customer GSTIN No.</strong>:{{$invoices[0]->gstin}}
+		<td id="table_td"><strong>Customer GSTIN No:</strong>{{$invoices[0]->gstin}}
 		</td>
         <td id="table_td">Place of Supply:<span>{{$invoices[0]->place_of_supply}}</span>
        </td>
@@ -169,18 +171,18 @@
 		</tr>
 		<tr>
 		<td colspan="4" id="table_td" align="left">
-		<strong>Company Name:</strong><span>Mobisoft Technology India Pvt Ltd.</span><br>
-		<strong>Bank Name:</strong><span>ICICI Bank</span><br>
-		<strong>Account No:</strong><span>015105012883</span><br>
-		<strong>RTGS/NEFT/IFSC/CODE:</strong><span>ICIC0000151</span>
+		<strong>Company Name : </strong><span>Mobisoft Technology India Pvt Ltd.</span><br>
+		<strong>Bank Name : </strong><span>ICICI Bank</span><br>
+		<strong>Account No : </strong><span>015105012883</span><br>
+		<strong>IFSC/CODE : </strong><span>ICIC0000151</span>
 		</td>
 		</tr>
 		<tr>
 		<td colspan="4" id="table_td" align="left">
-		<strong>Company Name:</strong><span>Mobisoft Technology India Pvt Ltd.</span><br>
-		<strong>Bank Name:</strong><span>Central Bank of India Details</span><br>
-		<strong>Account No:</strong><span>3497063665</span><br>
-		<strong>RTGS/NEFT/IFSC/CODE:</strong><span>CBIN0283154</span>
+		<strong>Company Name : </strong><span>Mobisoft Technology India Pvt Ltd.</span><br>
+		<strong>Bank Name : </strong><span>Central Bank of India Details</span><br>
+		<strong>Account No : </strong><span>3497063665</span><br>
+		<strong>IFSC/CODE : </strong><span>CBIN0283154</span>
 		</td>
 		</tr>
 

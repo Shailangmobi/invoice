@@ -139,7 +139,7 @@ class Invoice extends Model
     }
     public static function insertInvoiceData($data)
     {
-
+    	
         $insertData['gstin'] = $data['GSTIN'];
         $insertData['name'] = $data['name'];
         // $company = DB::table('company')->select('company_name')->where('id','=',$data['company'])->get();
@@ -160,11 +160,11 @@ class Invoice extends Model
 		$insertData['user_id'] = "21";
 		$insertData['customer_id'] = $data['id'];
 		try {
-			if($data['amount1'] != "" && $data['product1'] != ""){
+			if($data['amount1'] != 0 && $data['product1'] != ""){
 				
 				$insertDetails = DB::table('invoice')->insert($insertData);
 			}
-			if($data['amount1'] != ""|| $data['amount2'] != "" || $data['amount2'] != null) {
+			if($data['amount1'] != 0 && $data['product2'] != "") {
 				/*return $$data['amount1'];*/
 				$insertData['amount'] = $data['amount2'];
 				$insertData['product'] = $data['product2'];
@@ -195,6 +195,7 @@ class Invoice extends Model
 				$message['code']= 200 ;
 				$message['status']= "Success" ;
 				$message['message']= "Invoice Data Inserted !";
+				$message['data']= $data ;
 				$invoiceCount=Invoice::getCount();
 				return response()->json($message);
 			}else{

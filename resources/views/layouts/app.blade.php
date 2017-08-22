@@ -48,7 +48,54 @@
     <script type="text/javascript" src="{{URL::asset('app/jquery.validate.js')}}"></script>
     <link rel="stylesheet" href="{{URL::asset('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css')}}" />
     <!-- <script src="app/js/login.js"></script> -->
-    
+    <style>
+.loader {
+ position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #62cb31;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 1s linear infinite;
+ 
+}
+
+.bodyLoaderWithOverlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: #000;
+    filter: alpha(Opacity=80);
+    opacity: .8;
+    display: none;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+
+<div class="bodyLoaderWithOverlay">
+    <div class="text-center">
+      <div class="loader"></div>
+    </div>
+</div>
 
 
 </head>

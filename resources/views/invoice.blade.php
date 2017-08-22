@@ -75,7 +75,7 @@
 				Address:<textarea readonly="" class="form-control" type="text" id="address" name="address"></textarea>
 				</td>
 
-				<td id="table_td" >Invoice no:-<input readonly="" class="form-control" readonly="" id="invoice" name="invoice" value="Invoice No:{{$data[0]->count}}"></td>
+				<td id="table_td" >Invoice no:-<input readonly="" class="form-control" readonly="" id="invoice" name="invoice" value="Invoice No {{$data[0]->count}}"></td>
 
 				<td id="table_td" rowspan="2" ><strong>{{$data2[0]->company_name}}</strong><br>
 				Address :{{$data2[0]->company_address}}<br>
@@ -230,7 +230,78 @@
 </div>
 <script type="text/javascript">
 	$(function(){
-		
+		$('#search_box').autocomplete({        
+	        source: function (request, response) {
+	            if(request.term==''){
+	                $('.ui-autocomplete').css("display","none");
+	                return false;
+	            }
+	           
+	            var formData = new FormData();
+	            formData.append('search_value',request.term);
+
+	             var data = {
+			        search_val : request.term
+			    };
+
+	            $.ajax({
+	                url :"/api/search/"+request.term,
+	                dataType: 'json',
+	                //data: data,
+	                success: function (data) {
+	                	console.log(data);
+	                	console.log(data.length);
+	                	       
+	                    if(data.length != 0){
+	                        if(data.length > 5){
+	                            $('.ui-autocomplete').addClass('ul_scroll');
+	                        }else{
+	                            $('.ui-autocomplete').removeClass('ul_scroll');
+	                        }
+	                        response($.map(data, function (item) {
+	                            return { 
+	                                value: item.VALUE,
+	                                label: item.LABEL,
+	                                type: item.SHOW_TYPE
+	                            };                
+	                        }));
+	                    }
+	                    else{
+	                        $('.ui-autocomplete').removeClass('ul_scroll');
+	                        response($.map(data, function (item) {
+	                            return { 
+	                                label: ''
+	                            };                
+	                        }));
+	                    }
+	                }     
+	            });
+	        },
+	        select:function(event,ui){
+	            $('#search_box').val(ui.item.LABEL);
+	            if($('#search_box').val()==''){
+	                return false;
+	            }
+	            //$(".search-btn").trigger("click");
+	        },         
+	        minLength: 0  
+	    }).data("ui-autocomplete")._renderItem = function (ul, item) {
+	        if(item.label == undefined || item.label == ''){        
+	            return $("<li></li>")
+	                .append("<a>No Records Found</a>")
+	                .appendTo(ul);       
+	        }
+	        else{
+
+	        	
+	        		return $("<li></li>")
+		                .data("item.autocomplete", item)
+		                // .append("<a href='/pic-a-show/"+item.value+"' >" + item.label +"</a>")
+		                .append("<a onclick='getCompanyAddress("+item.value+");'>" + item.label +"</a>")
+		                .appendTo(ul);
+	        	
+	        }           
+	    };
 	});
 </script>
 <script type="text/javascript">

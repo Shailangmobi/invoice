@@ -1,76 +1,5 @@
 $(function(){
-	$('#search_box').autocomplete({        
-	        source: function (request, response) {
-	            if(request.term==''){
-	                $('.ui-autocomplete').css("display","none");
-	                return false;
-	            }
-	           
-	            var formData = new FormData();
-	            formData.append('search_value',request.term);
-
-	             var data = {
-			        search_val : request.term
-			    };
-
-	            $.ajax({
-	                url :"/api/search/"+request.term,
-	                dataType: 'json',
-	                //data: data,
-	                success: function (data) {
-	                	console.log(data);
-	                	console.log(data.length);
-	                	       
-	                    if(data.length != 0){
-	                        if(data.length > 5){
-	                            $('.ui-autocomplete').addClass('ul_scroll');
-	                        }else{
-	                            $('.ui-autocomplete').removeClass('ul_scroll');
-	                        }
-	                        response($.map(data, function (item) {
-	                            return { 
-	                                value: item.VALUE,
-	                                label: item.LABEL,
-	                                type: item.SHOW_TYPE
-	                            };                
-	                        }));
-	                    }
-	                    else{
-	                        $('.ui-autocomplete').removeClass('ul_scroll');
-	                        response($.map(data, function (item) {
-	                            return { 
-	                                label: ''
-	                            };                
-	                        }));
-	                    }
-	                }     
-	            });
-	        },
-	        select:function(event,ui){
-	            $('#search_box').val(ui.item.LABEL);
-	            if($('#search_box').val()==''){
-	                return false;
-	            }
-	            //$(".search-btn").trigger("click");
-	        },         
-	        minLength: 0  
-	    }).data("ui-autocomplete")._renderItem = function (ul, item) {
-	        if(item.label == undefined || item.label == ''){        
-	            return $("<li></li>")
-	                .append("<a>No Records Found</a>")
-	                .appendTo(ul);       
-	        }
-	        else{
-
-	        	
-	        		return $("<li></li>")
-		                .data("item.autocomplete", item)
-		                // .append("<a href='/pic-a-show/"+item.value+"' >" + item.label +"</a>")
-		                .append("<a onclick='getCompanyAddress("+item.value+");'>" + item.label +"</a>")
-		                .appendTo(ul);
-	        	
-	        }           
-	    };
+	
  	
 	var now = new Date();
     var day = ("0" + now.getDate()).slice(-2);
@@ -433,11 +362,11 @@ function mailInvoice(id){
 		
 		"dataType":"JSON",
 		beforeSend:function(){
-		
+			$('.bodyLoaderWithOverlay').show();
 		},
 		success:function(response){
 			
-			console.log(response);
+			
 			if(response.code == 200){
 				alert(response.message);
 				 window.location.href = "/viewInvoice";
@@ -446,7 +375,7 @@ function mailInvoice(id){
 			}
 		},
 		complete:function(){
-			
+			$('.bodyLoaderWithOverlay').hide();
 		
 		}
 	});
