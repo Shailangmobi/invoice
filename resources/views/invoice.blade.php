@@ -155,21 +155,21 @@
        <td id="table_td" rowspan="5" ></td>
         
 		<td id="table_td" colspan="2" style="text-align:right">Sub total</td>
-		<td id="table_td">Rs:-<input type="hidden" name="h_Sub_amount" id="h_Sub_amount"><span id="Sub_amount" name="Sub_amount"></span></td>
+		<td id="table_td"><input type="hidden" name="h_Sub_amount" id="h_Sub_amount"><span id="Sub_amount" name="Sub_amount"></span></td>
 		</tr>
         
         <tr>
        
         
 		<td id="table_td" colspan="2" style="text-align:right">
-		CGST : 9%<br>
-        SGST : 9%<br>
-        IGST : 18%
+		<span>CGST : 9%</span><br><br><br>
+        <span>SGST : 9%</span><br><br><br>
+        <span>IGST : 18%</span>
         </td>
 		<td id="table_td">
-		Rs:-<input  type="hidden" name="h_cgst" id="h_cgst"><span id="cgst" name="cgst"></span><br>
-        Rs:-<input  type="hidden" name="h_sgst" id="h_sgst"><span id="sgst" name="sgst"></span><br>
-        Rs:-<input  type="hidden" name="h_igst" id="h_igst"><span id="igst" name="isgst"></span>
+		<input  type="hidden" name="h_cgst" id="h_cgst"><span class="form-control"  id="cgst" name="cgst"></span><br>
+        <input  type="hidden" name="h_sgst" id="h_sgst"><span class="form-control"  id="sgst" name="sgst"></span><br>
+        <input  type="hidden" name="h_igst" id="h_igst"><span class="form-control"  id="igst" name="isgst"></span>
 		</tr>
         
         
@@ -177,15 +177,15 @@
 		<tr>
         
         
-		<td colspan="2" style="text-align:right">GST TAX Total</td>
-		<td id="table_td"><input type="hidden" name="h_total_tax" id="h_total_tax">Rs:-<span id="total_tax" name="total_tax"></span></td>
+		<td colspan="2" style="text-align:right">GST TAX Total </td>
+		<td id="table_td"><input type="hidden" name="h_total_tax" id="h_total_tax"><span id="total_tax" name="total_tax"></span></td>
 		</tr>
 		
         <tr>
         
         
 		<td id="table_td" colspan="2" style="text-align:right">Total Amount</td>
-		<td id="table_td">Rs:-
+		<td id="table_td">
 		<input type="hidden" name="h_total_amount" id="h_total_amount"><span id="total_amount" name="total_amount"></span>
 		</td>
 		</tr>

@@ -105,9 +105,9 @@
         	
 	        </span>
         </td>
-        	<td>
+        	<td id="table_td" >
 		@foreach ($invoices as $amount)
-			Rs:-{{$amount->amount}}<br>
+			{{$amount->amount}}<br>
 		@endforeach
 		</td>
 		</tr>
@@ -118,7 +118,7 @@
        <td id="table_td" rowspan="5" ></td>
         
 		<td id="table_td" colspan="2" style="text-align:right">Sub total</td>
-		<td><span >Rs:-{{$invoices[0]->sub_total}}</span></td>
+		<td id="table_td"><span >{{$invoices[0]->sub_total}}</span></td>
 		</tr>
         
         <tr>
@@ -130,9 +130,24 @@
         IGST : 18%
         </td>
 		<td id="table_td">
-		Rs:-<span id="cgst" name="cgst">{{$invoices[0]->cgst}}</span><br>
-        Rs:-<span id="sgst" name="sgst">{{$invoices[0]->sgst}}</span><br>
-        Rs:-<span id="igst" name="isgst">{{$invoices[0]->igst}}</span>
+		@if($invoices[0]->cgst != 0 )
+		<span id="cgst" name="cgst">{{$invoices[0]->cgst}}</span><br>
+		@else
+		<span id="cgst" name="cgst"> </span><br>
+		@endif
+		@if($invoices[0]->sgst != 0 )
+		<span id="sgst" name="sgst">{{$invoices[0]->sgst}}</span><br>
+		@else
+		<span id="cgst" name="cgst"> </span><br>
+		@endif
+		@if($invoices[0]->igst != 0 )
+		<span id="igst" name="isgst">{{$invoices[0]->igst}}</span>
+		@else
+		<span id="cgst" name="cgst"> </span><br>
+		@endif
+		
+       
+        
 		</tr>
         
         
@@ -140,15 +155,15 @@
 		<tr>
         
         
-		<td colspan="2" style="text-align:right">GST TAX Total</td>
-		<td id="table_td" >Rs:-<span id="total_tax" name="total_tax">{{$invoices[0]->total_tax}}</span></td>
+		<td id="table_td" colspan="2" style="text-align:right">GST TAX Total</td>
+		<td id="table_td" ><span id="total_tax" name="total_tax">{{$invoices[0]->total_tax}}</span></td>
 		</tr>
 		
         <tr>
         
         
 		<td id="table_td" colspan="2" style="text-align:right">Total Amount</td>
-		<td id="table_td">Rs:-
+		<td id="table_td">
 		<span id="total_amount" name="total_amount">{{$invoices[0]->total_amount}}</span>
 		</td>
 		</tr>
