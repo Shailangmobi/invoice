@@ -156,10 +156,10 @@
         IGST : 18%
         </td>
 		<td id="table_td">
-		Rs:-<input readonly="" type="text" name="cgst" id="cgst" value="{{$data[0]->cgst}}" ><br>
+		Rs:-<input readonly="" class = "form-control"  type="text" name="cgst" id="cgst" value="{{$data[0]->cgst}}" ><br>
       	
-        Rs:-<input readonly="" type="text" name="sgst" id="sgst" value="{{$data[0]->sgst}}" ><br>
-        Rs:-<input readonly="" type="text" name="igst" id="igst" value="{{$data[0]->igst}}" ><br>
+        Rs:-<input readonly="" class = "form-control"  type="text" name="sgst" id="sgst" value="{{$data[0]->sgst}}" ><br>
+        Rs:-<input readonly="" class = "form-control"   type="text" name="igst" id="igst" value="{{$data[0]->igst}}" ><br>
 		</tr>
         
         
@@ -168,7 +168,7 @@
         
         
 		<td colspan="2" style="text-align:right">GST TAX Total</td>
-		<td id="table_td">Rs:-<input readonly="" type="text" name="total_tax" id="total_tax" value="{{$data[0]->total_tax}}"></td>
+		<td id="table_td">Rs:-<input class = "form-control"  readonly="" type="text" name="total_tax" id="total_tax" value="{{$data[0]->total_tax}}"></td>
 		</tr>
 		
         <tr>
@@ -176,7 +176,7 @@
         
 		<td id="table_td" colspan="2" style="text-align:right">Total Amount</td>
 		<td id="table_td">Rs:-
-		<input readonly="" type="text" name="total_amount" id="total_amount" value="{{$data[0]->total_amount}}">
+		<input readonly="" class = "form-control"  type="text" name="total_amount" id="total_amount" value="{{$data[0]->total_amount}}">
 		</td>
 		</tr>
         
