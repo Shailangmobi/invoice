@@ -4,8 +4,9 @@ $(function(){
       
         
     }else{
-    	 window.location.href = "dashboard";
+    	 window.location.href = "/dashboard";
     }
+    
 $('#loginSubmit').click(function(){
 		login();
 	});
@@ -60,10 +61,10 @@ function login(){
 		});
 }
 function logout(){
-
+	
 	 $.removeCookie("tokenId", { path: '/' });
      $.removeCookie("tokenUsername", { path: '/' });
      $.removeCookie("tokenId");
      $.removeCookie("tokenUsername");
-     window.location.href = "login";
+     window.location.href = "/login";
 }

@@ -16,13 +16,14 @@ return view('addUser');
 
 
 
-Route::get('/dashboard', [
-	    'as' => '/dashboard', 'uses' => 'InvoicController@getDashBoardCount'
-]);
+
 
 Route::get('/', function () {
 return view('login');
 });
+Route::get('/dashboard', [
+	    'as' => '/dashboard', 'uses' => 'InvoicController@getDashBoardCount'
+]);
 
 /*Route::get('/addCompanyProfile', function () {
 return view('addProfile');

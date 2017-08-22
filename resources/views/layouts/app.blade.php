@@ -43,11 +43,12 @@
     <script src="{{URL::asset('scripts/charts.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
     <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script src="{{URL::asset('app/jquery.cookie.js')}}"></script>
+   
     
     <script type="text/javascript" src="{{URL::asset('app/jquery.validate.js')}}"></script>
     <link rel="stylesheet" href="{{URL::asset('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css')}}" />
-    <!-- <script src="app/js/login.js"></script> -->
+    
+    <script src="{{URL::asset('app/jquery.cookie.js')}}"></script>
     <style>
 .loader {
  position: fixed;

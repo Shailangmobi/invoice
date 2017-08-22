@@ -8,7 +8,7 @@
 <script type="text/javascript">
        if (typeof $.cookie('tokenId') === 'undefined' && typeof $.cookie('tokenUsername') === 'undefined'){
         //no cookie         
-       window.location.href = "/login";
+       window.location.href = "/";
         
     } 
 </script>

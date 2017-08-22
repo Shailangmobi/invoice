@@ -87,4 +87,14 @@
 
 </div>
 
+<script type="text/javascript">
+    function logout(){
+    
+     $.removeCookie("tokenId", { path: '/' });
+     $.removeCookie("tokenUsername", { path: '/' });
+     $.removeCookie("tokenId");
+     $.removeCookie("tokenUsername");
+     window.location.href = "/login";
+}
+</script>
 @endsection
