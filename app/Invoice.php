@@ -7,6 +7,14 @@ use DB;
 class Invoice extends Model
 {
     //
+    public static function search($data){
+
+    	$company = DB::table('company')->select('company_name AS LABEL','id AS VALUE','company_state AS company_state','company_address AS company_address')->where('company_name', 'like', '%'.$data.'%')->orWhere('phone','like','%'.$data.'%')->get();
+
+		return $company;
+    
+    }
+
 	public static function login($data)
     {
         
@@ -134,8 +142,8 @@ class Invoice extends Model
 
         $insertData['gstin'] = $data['GSTIN'];
         $insertData['name'] = $data['name'];
-        $company = DB::table('company')->select('company_name')->where('id','=',$data['company'])->get();
-        $insertData['company_name'] = $company[0]->company_name;
+        // $company = DB::table('company')->select('company_name')->where('id','=',$data['company'])->get();
+        $insertData['company_name'] = $data['company'];
 		$insertData['address'] = $data['address'];
 		$insertData['invoice'] = $data['invoice'];
 		
@@ -157,7 +165,7 @@ class Invoice extends Model
 				$insertDetails = DB::table('invoice')->insert($insertData);
 			}
 			if($data['amount1'] != ""|| $data['amount2'] != "" || $data['amount2'] != null) {
-				return $$data['amount1'];
+				/*return $$data['amount1'];*/
 				$insertData['amount'] = $data['amount2'];
 				$insertData['product'] = $data['product2'];
 				
@@ -197,7 +205,7 @@ class Invoice extends Model
 			}
 				
 		
-		} catch (\Exception $e) {
+		} catch (Exception $e) {
 				$message['code']= 401 ;
 				$message['status']= "Exception Caought" ;
 				$message['message']= "There was an ERROR !";

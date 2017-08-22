@@ -52,6 +52,13 @@
         <form id="invoiceForm">
         <table id="table-bordered"  style="width:100%;">
         <tr>
+       
+        <div class="search2">
+            <form>
+                <i class="fa fa-search"></i>
+                <input type="text" id="search_box" value="Search By Name or Mobile Number" placeholder="Search By Name or Mobile Number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search By Name or Mobile Number';}"/>
+            </form>
+        </div>
         <td id="headtxt">INVOICE</td>
         </tr>
         </table>
@@ -61,17 +68,14 @@
 
 			<tr>
 				<td id="table_td"  rowspan="2"><strong>Customer Details:-</strong><br>
-                Company Name:<select class="form-control" id="company" name="company" onchange="getCompanyAddress(this.value);">
-                					<option value="">Select</option>
-                				@foreach($company as $company)
-                					<option value="{{$company->id}}">{{$company->company_name}}</option>
-                				@endforeach
-                			  </select><br>
-				Customer Name:<input class="form-control" type="text" id="name" name="name"><br>
-				Address:<textarea class="form-control" type="text" id="address" name="address"></textarea>
+
+                Company Name:<input readonly="" type="text" class="form-control" id="company" name="company" ><br>
+                					
+				Customer Name:<input readonly="" class="form-control" type="text" id="name" name="name"><br>
+				Address:<textarea readonly="" class="form-control" type="text" id="address" name="address"></textarea>
 				</td>
 
-				<td id="table_td" >Invoice no:-<input class="form-control" readonly="" id="invoice" name="invoice" value="IN-{{$data[0]->count}}"></td>
+				<td id="table_td" >Invoice no:-<input readonly="" class="form-control" readonly="" id="invoice" name="invoice" value="IN-{{$data[0]->count}}"></td>
 
 				<td id="table_td" rowspan="2" ><strong>{{$data2[0]->company_name}}</strong><br>
 				Address :{{$data2[0]->company_address}}<br>
@@ -89,7 +93,7 @@
 		<tr>
 		
         
-		<td id="table_td"><strong>Customer GSTIN No.</strong>:- <input class="form-control" id="GSTIN" name="GSTIN">
+		<td id="table_td"><strong>Customer GSTIN No.</strong>:- <input readonly="" class="form-control" id="GSTIN" name="GSTIN">
 		</td>
         <td id="table_td">Place of Supply:
         <select class="form-control" id="place_of_supply" name="place_of_supply" onchange="placeOfSup(this.value);">
@@ -129,7 +133,11 @@
 		
 		</td>
 
-        <td id="table_td">998413</td>
+        <td id="table_td" style="vertical-align:top;">
+        	<span style="visibility: visible;">998413</span><br>
+        	
+	        </span>
+        </td>
 		
 		<td class = "myamount">
 		@php ($i = 1)
@@ -192,7 +200,8 @@
 		<strong>Account No:</strong><span>015105012883</span><br>
 		<strong>RTGS/NEFT/IFSC/CODE:</strong><span>ICIC0000151</span>
 		</td>
-		<td rowspan="2"></td>
+		<td rowspan="2"><center><b>For Mobisoft Technology India Pvt Ltd<br><br><br><br><br><br>Authorized Signature</b></center>
+		</td>
 		</tr>
 		<tr>
 		<td colspan="3" id="table_td" align="left">
@@ -218,5 +227,15 @@
 	</div>
 		</div>
 	</div>
-</div>		
+</div>
+<script type="text/javascript">
+	$(function(){
+		
+	});
+</script>
+<script type="text/javascript">
+	function alertalert(id){
+		alert(id);
+	} 
+</script>
 @endsection

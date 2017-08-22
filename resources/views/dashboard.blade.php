@@ -11,6 +11,7 @@
         
     } 
 </script>
+
 <!-- Main Wrapper -->
 <div id="wrapper">
 
@@ -27,6 +28,50 @@
             </div>
         </div>
        
+       
+    </div>
+    <div class="content animate-panel">
+
+        <div class="row">
+            <div class="col-lg-3" style="">
+                <div class="hpanel">
+                    <div class="panel-body text-center h-200">
+                       
+
+                        <h1 class="m-xs">{{$data}}</h1>
+
+                        <h3 class="font-extra-bold no-margins text-success">
+                            Invoice Id Created
+                        </h3>
+                        <small>All Created Invoices Id Count</small>
+                    </div>
+                    <div class="panel-footer">
+                        This is standard panel footer
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3" style="">
+                <div class="hpanel">
+                    <div class="panel-body text-center h-200">
+                       
+
+                        <h1 class="m-xs">{{$company}}</h1>
+
+                        <h3 class="font-extra-bold no-margins text-success">
+                            Companys Registered
+                        </h3>
+                        <small>All Registered Company Count</small>
+                    </div>
+                    <div class="panel-footer">
+                        This is standard panel footer
+                    </div>
+                </div>
+            </div>
+            
+            
+           
+        </div>
+
        
     </div>
 

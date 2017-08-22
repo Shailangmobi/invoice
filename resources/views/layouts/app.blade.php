@@ -46,6 +46,7 @@
     <script src="{{URL::asset('app/jquery.cookie.js')}}"></script>
     
     <script type="text/javascript" src="{{URL::asset('app/jquery.validate.js')}}"></script>
+    <link rel="stylesheet" href="{{URL::asset('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css')}}" />
     <!-- <script src="app/js/login.js"></script> -->
     
 

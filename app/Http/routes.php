@@ -14,9 +14,11 @@ Route::get('/addUser', function () {
 return view('addUser');
 });
 
-Route::get('/dashboard', function () {
-return view('dashboard');
-});
+
+
+Route::get('/dashboard', [
+	    'as' => '/dashboard', 'uses' => 'InvoicController@getDashBoardCount'
+]);
 
 Route::get('/', function () {
 return view('login');
@@ -100,5 +102,9 @@ $api->version('v1', function ($api) {
 
 $api->version('v1', function ($api) {
 	$api->post('editInvoice','App\Http\Controllers\Api\V1\UserController@editInvoice');
+});
+
+$api->version('v1', function ($api) {
+	$api->get('search/{data}','App\Http\Controllers\Api\V1\UserController@search');
 });
 

@@ -100,7 +100,11 @@
 		<span>{{$invoice->product}}</span><br>
 		@endforeach
 		</td>
-        <td id="table_td">998413</td>
+         <td id="table_td" style="vertical-align:top;">
+        	<span style="visibility: visible;">998413</span><br>
+        	
+	        </span>
+        </td>
         	<td>
 		@foreach ($invoices as $amount)
 			Rs:-{{$amount->amount}}<br>
@@ -157,8 +161,8 @@
 		<strong>Bank Name:</strong><span>ICICI Bank</span><br>
 		<strong>Account No:</strong><span>015105012883</span><br>
 		<strong>RTGS/NEFT/IFSC/CODE:</strong><span>ICIC0000151</span>
-		</td>
-		<td id="table_td" rowspan="2">Authorized Signature</td>
+		</td><br>
+		<td id="table_td" rowspan="2"><center><b>For Mobisoft Technology India Pvt Ltd<br><br><br><br><br><br>Authorized Signature</b></center></td>
 		</tr>
 
 		<tr>

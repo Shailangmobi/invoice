@@ -81,9 +81,7 @@ $(function(){
 				minlength:10,
 				maxlength:12,
 			},
-			cin:{
-				required: true,
-			},
+			
 			account_no:{
 				required: true,
 			},
@@ -132,9 +130,7 @@ $(function(){
 				minlength:10,
 				maxlength:12,
 			},
-			cin:{
-				required: true,
-			},
+			
 			account_no:{
 				required: true,
 			},

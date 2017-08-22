@@ -26,11 +26,17 @@ class UserController extends Controller
         return $insert;
 
     }
+    public function search($request){
+        
+        $company = Invoice::search($request);
+        return response()->json($company);
+
+    }
 
     public function insertInvoice(Request $request){
 
     	$input = $request->all();
-
+      
     	$insert = Invoice::insertInvoiceData($input);
     	return $insert;
 

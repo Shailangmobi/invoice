@@ -28,7 +28,7 @@
 
         <ul class="nav" id="side-menu">
             <li class="active">
-                <a href="/viewInvoice"> <span class="nav-label">Dashboard</span> <span class="label label-success pull-right">v.1</span> </a>
+                <a href="/dashboard"> <span class="nav-label">Dashboard</span> <span class="label label-success pull-right">v.1</span> </a>
             </li>
            <!--  <li>
                 <a href="addUser"> <span class="nav-label">Add Users</span><span class="label label-warning pull-right">NEW</span></a>

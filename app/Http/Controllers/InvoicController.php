@@ -19,5 +19,13 @@ class InvoicController extends Controller
         return View('invoice')->with('data',$count)->with('company',$company)->with('product',$product)->with('data2',$data);
     }
 
+    protected function getDashBoardCount()
+    {
+        $count = DB::table('invoice')->where('status','=',1)->groupBy('invoice')->count();
+        $company = DB::table('company')->where('status','=',1)->count();
+        
+        return View('dashboard')->with('data',$count)->with('company',$company);
+    }
+
    
 }
