@@ -56,16 +56,16 @@
 
 			<tr>
 				<td id="table_td"  rowspan="2"><strong>Customer Details:-</strong><br>
-                Company Name:<input class = "form-control" id="company_name" name="company_name" value="{{$data[0]->company_name}}">
+                Company Name:<input readonly="" class = "form-control" id="company_name" name="company_name" value="{{$data[0]->company_name}}">
                 				
                 					
                 				
                 			  <br>
-				Customer Name:<input class = "form-control"  type="text" id="name" name="name" value="{{$data[0]->name}}"><br>
-				Address:<textarea class = "form-control"  type="text" id="address" name="address" value="{{$data[0]->address}}">{{$data[0]->address}}</textarea> 
+				Customer Name:<input readonly="" class = "form-control"  type="text" id="name" name="name" value="{{$data[0]->name}}"><br>
+				Address:<textarea readonly="" class = "form-control"  type="text" id="address" name="address" value="{{$data[0]->address}}">{{$data[0]->address}}</textarea> 
 				</td>
 
-				<td id="table_td" >Invoice no:-<input class = "form-control"  readonly="" id="invoice" name="invoice" value="{{$data[0]->invoice}}"></td>
+				<td id="table_td" >Invoice no:-<input readonly="" class = "form-control"  readonly="" id="invoice" name="invoice" value="{{$data[0]->invoice}}"></td>
 
 					<td id="table_td" rowspan="2" ><strong>{{$company[0]->company_name}}</strong><br>
 				Address :{{$company[0]->company_address}}<br>
@@ -77,16 +77,16 @@
                  </td>
 			</tr>
 
-		<tr><td id="table_td">Date:- <input  class = "form-control"  type="text" name="date" id="date" value="{{$data[0]->date}}">
+		<tr><td id="table_td">Date:- <input readonly=""  class = "form-control"  type="text" name="date" id="date" value="{{$data[0]->date}}">
         </td></tr>
 
 		<tr>
 		
         
-		<td id="table_td"><strong>Customer GSTIN No.</strong>:- <input  class = "form-control" id="gstin" name="gstin" value="{{$data[0]->gstin}}">
+		<td id="table_td"><strong>Customer GSTIN No.</strong>:- <input  readonly="" class = "form-control" id="gstin" name="gstin" value="{{$data[0]->gstin}}">
 		</td>
         <td id="table_td">Place of Supply:
-        <input class = "form-control"  id="place_of_supply" name="place_of_supply" value="{{$data[0]->place_of_supply}}">
+        <input  readonly="" class = "form-control"  id="place_of_supply" name="place_of_supply" value="{{$data[0]->place_of_supply}}">
         </td>
 		<td id="table_td"><strong>GSTIN</strong>: 27AAHC1232C1ZZ<br></td>
 		</tr>
