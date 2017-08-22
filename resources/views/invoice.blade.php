@@ -75,7 +75,7 @@
 				Address:<textarea readonly="" class="form-control" type="text" id="address" name="address"></textarea>
 				</td>
 
-				<td id="table_td" >Invoice no:-<input readonly="" class="form-control" readonly="" id="invoice" name="invoice" value="IN-{{$data[0]->count}}"></td>
+				<td id="table_td" >Invoice no:-<input readonly="" class="form-control" readonly="" id="invoice" name="invoice" value="Invoice No:{{$data[0]->count}}"></td>
 
 				<td id="table_td" rowspan="2" ><strong>{{$data2[0]->company_name}}</strong><br>
 				Address :{{$data2[0]->company_address}}<br>
