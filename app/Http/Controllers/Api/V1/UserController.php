@@ -197,6 +197,8 @@ class UserController extends Controller
                 $message->subject('Mobisoft Tech Pvt Ltd Product Invoice');
                 $message->from('no-reply@mobisofttech.co.in', 'Mobisoft Tech Pvt Ltd!');
                 $message->to($Customer[0]->email);
+                $message->cc('accounts@mobisofttech.co.in');
+                $message->cc('priya@mobisofttech.co.in');
                 $message->attachData($pdf->output(),'inVoice_mail.pdf');
             });
                 $response['code'] = 200;
@@ -207,7 +209,7 @@ class UserController extends Controller
 
                 $response['code'] = 200;
                 $response['status'] ="Success";
-                $response['message'] = "Invoice Mail not ,No email ID found";
+                $response['message'] = "Invoice Mail not sent,No email ID found";
                 $response['data'] = $data;
 
          }
