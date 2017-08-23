@@ -56,9 +56,9 @@
         <div class="search2">
             <form>
                 <i class="fa fa-search"></i>
-                <input type="text" id="search_box" value="Search By Name or Mobile Number" placeholder="Search By Name or Mobile Number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search By Name or Mobile Number';}"/>
+                <input style="width: 22%;" type="text" id="search_box" value="Search By Name or Mobile Number" placeholder="Search By Name or Mobile Number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search By Name or Mobile Number';}"/>
             </form>
-        </div>
+        </div><br>
         <td id="headtxt">INVOICE</td>
         </tr>
         </table>

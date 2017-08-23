@@ -56,6 +56,8 @@ Route::get('/invoice', [
 
 Route::get('pdfview/{id}',array('as'=>'pdfview','uses'=>'Api\V1\UserController@pdfview'));
 
+Route::get('preview/{id}',array('as'=>'pdfview','uses'=>'Api\V1\UserController@preview'));
+
 Route::get('edit/{id}',array('as'=>'/edit','uses'=>'Api\V1\UserController@edit'));
 
 /*Route::get('mail/{id}',array('as'=>'/mail','uses'=>'Api\V1\UserController@mail'));*/
