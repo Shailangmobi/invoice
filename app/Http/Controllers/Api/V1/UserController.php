@@ -30,8 +30,18 @@ class UserController extends Controller
 
     public function importFileIntoDB(Request $request){
         if($request->hasFile('sample_file')){
+            $file = $request->file('sample_file');
+            $file = $file->getClientOriginalName();
+            $ext = pathinfo($file, PATHINFO_EXTENSION);
             $path = $request->file('sample_file')->getRealPath();
             $data = \Excel::load($path)->get();
+             if($ext == "csv" || $ext == "xlsx" || $ext == "xlsm"|| $ext == "xls"){
+            
+              
+            }else{
+                return back()->with('msg_notok',"Failed! Wrong Excel file Extension");
+            } 
+            
             if($data->count()){
                 foreach ($data as $key => $value) {
                     $arr[] = ['name' => $value->name,

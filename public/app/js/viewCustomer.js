@@ -82,3 +82,12 @@ function editCustomer(){
 		}
 	});
 }
+
+function logout(){
+	
+	 $.removeCookie("tokenId", { path: '/' });
+     $.removeCookie("tokenUsername", { path: '/' });
+     $.removeCookie("tokenId");
+     $.removeCookie("tokenUsername");
+     window.location.href = "/login";
+}
