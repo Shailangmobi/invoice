@@ -13,6 +13,7 @@ use Session;
 use View;
 use DB;
 use PDF;
+use Excel;
 
 class UserController extends Controller
 {
@@ -26,6 +27,33 @@ class UserController extends Controller
         return $insert;
 
     }
+
+    public function importFileIntoDB(Request $request){
+        if($request->hasFile('sample_file')){
+            $path = $request->file('sample_file')->getRealPath();
+            $data = \Excel::load($path)->get();
+            if($data->count()){
+                foreach ($data as $key => $value) {
+                    $arr[] = ['name' => $value->name,
+                             'email' => $value->email
+                             , 'company_name' => $value->company_name
+                             , 'company_state' => $value->company_state
+                             , 'company_address' => $value->company_address
+                             , 'phone' => $value->phone
+                             , 'cin' => $value->cin
+                             , 'gistin' => $value->gistin
+                             , 'status' => $value->status];
+                }
+                if(!empty($arr)){
+                    \DB::table('company')->insert($arr);
+                   
+                   return back()->with('msg_ok','successfully');
+                }
+            }
+        }
+         return back()->with('msg_notok','Failed No file Selected');
+    } 
+
     public function search($request){
         
         $company = Invoice::search($request);
