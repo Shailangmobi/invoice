@@ -11,7 +11,7 @@ $(function(){
 	$('#submitInvoice').click(function(){
 		submitInvoice();
 	});
-
+	
 });
 function placeOfSup(str){
 		
@@ -137,6 +137,7 @@ function EditcalcTax(amount){
 		
 	}
 }
+
 function submitInvoice(){
 
 	var checkSelect = '';
@@ -148,6 +149,11 @@ function submitInvoice(){
 	    var amount_check = $('.product'+checkClass).val();
 	    if( amount_check == '' || amount_check == 0 ){
 	    	alert('Please enter amount');
+	    	return false;
+	    }
+	    var amount_check = $('.quantity'+checkClass).val();
+	    if( amount_check == '' || amount_check == 0 ){
+	    	alert('Please enter quantity');
 	    	return false;
 	    }
 	});
@@ -180,6 +186,7 @@ function submitInvoice(){
 		"dataType":"JSON",
 		beforeSend:function(){
 		console.log(data);
+	
 		},
 		success:function(response){
 			
@@ -293,7 +300,6 @@ function getCompanyDetails(){
 
 function editInvoice(){
 	var data = $('#invoiceForm').serialize();
-	alert(data);
 	
 	$.ajax({
 		
@@ -325,35 +331,36 @@ function editInvoice(){
 function displayAmount(){
  	if(!$('#product1').val() == ""){
 		$('#amount1').css('visibility','visible');
+		$('#quantity1').css('visibility','visible');
 	   
 	   
 	}
 	
 	if(!$('#product2').val() == ""){
 		$('#amount2').css('visibility','visible');
-	   
+	   	$('#quantity2').css('visibility','visible');
 	   
 	}
 	if(!$('#product3').val() == ""){
 		$('#amount3').css('visibility','visible');
-	   
+	   	$('#quantity3').css('visibility','visible');
 	   
 	}
 	if(!$('#product4').val() == ""){
 		$('#amount4').css('visibility','visible');
-	   
+	   	$('#quantity4').css('visibility','visible');
 	   
 	}
 	if(!$('#product5').val() == ""){
 		$('#amount5').css('visibility','visible');
-	   
+	   	$('#quantity5').css('visibility','visible');
 	   
 	}
 	
 }
 
 function mailInvoice(id){
- 	alert(id);
+ 	
  	$.ajax({
 		
 		"url":"/api/mail/"+id,
@@ -380,6 +387,40 @@ function mailInvoice(id){
 		}
 	});
 }
+
+/*function calcQuanty(amount){
+	amount = parseInt(amount);
+	
+	var amount1 = parseInt($('#quantity1').val());
+	var amount2 = parseInt($('#quantity2').val());
+	var amount3 = parseInt($('#quantity3').val());
+	var amount4 = parseInt($('#quantity4').val());
+	var amount5 = parseInt($('#quantity5').val());
+	if(isNaN(amount1))
+	{
+		
+		amount1 = 0 ;
+	}
+	if(isNaN(amount2))
+	{
+		amount2 = 0 ;
+	}
+	if(isNaN(amount3))
+	{
+		amount3 = 0 ;
+	}
+	if(isNaN(amount4))
+	{
+		amount4 = 0 ;
+	}
+	if(isNaN(amount5))
+	{
+		amount5 = 0 ;
+	}
+	var amount = amount1 + amount2 + amount3 +amount4 +amount5;
+	
+	
+}*/
 
 function logout(){
 	

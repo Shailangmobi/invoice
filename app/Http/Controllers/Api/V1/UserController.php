@@ -104,6 +104,7 @@ class UserController extends Controller
 
     public function editInvoice(Request $request){
         $input = $request->all();
+       
         $result = Invoice::editInvoice($input);
             if(sizeof($result) > 0 ){
             $message['code']=200;

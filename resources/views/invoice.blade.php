@@ -111,13 +111,15 @@
 		<td id="table_td" >Sr. No.</td>
 		<td id="table_td">Description</td>
         <td id="table_td">SAC Code</td>
-		
+		<td id="table_td">Quantity</td>
 		<td id="table_td">Amount</td>
+
 		</tr>
+
 
 		<tr style="height:150px;">
 		<td id="table_td">1.</td>
-		<td id="table_td">
+		<td id="table_td" style="vertical-align:top;">
 		@php ($i = 1)
 		@foreach($product as $products)
 		<select class="mySelect form-control" id="product{{$i}}" name="product{{$i}}" onchange="displayAmount();">
@@ -135,11 +137,17 @@
 
         <td id="table_td" style="vertical-align:top;">
         	<span style="visibility: visible;">998413</span><br>
-        	
+        		
 	        </span>
         </td>
-		
-		<td class = "myamount">
+		<td id="table_td" style="vertical-align:top;">
+			@php ($i = 1)
+			@foreach($product as $product)
+				<input type="text" class="quantity{{$i}} form-control" id="quantity{{$i}}" name="quantity{{$i}}" value="0" style="visibility:hidden;"><br>
+			@php ($i++)
+			@endforeach
+		</td>
+		<td id="table_td"  class = "myamount" style="vertical-align:top;">
 		@php ($i = 1)
 		@foreach($product as $product)
 
@@ -147,21 +155,24 @@
 		@php ($i++)
 		@endforeach
 		</td>
+		
+
 		</tr>
 		
 
 
 		<tr>
-       <td id="table_td" rowspan="5" ></td>
+       <td id="table_td" rowspan="7" ></td>
         
-		<td id="table_td" colspan="2" style="text-align:right">Sub total</td>
+		<td id="table_td" colspan="3" style="text-align:right">Sub total</td>
+		
 		<td id="table_td"><input type="hidden" name="h_Sub_amount" id="h_Sub_amount"><span id="Sub_amount" name="Sub_amount"></span></td>
 		</tr>
         
         <tr>
        
         
-		<td id="table_td" colspan="2" style="text-align:right">
+		<td id="table_td" colspan="3" style="text-align:right">
 		<span>CGST : 9%</span><br><br><br>
         <span>SGST : 9%</span><br><br><br>
         <span>IGST : 18%</span>
@@ -177,14 +188,14 @@
 		<tr>
         
         
-		<td colspan="2" style="text-align:right">GST TAX Total </td>
+		<td id="table_td" colspan="3" style="text-align:right">GST TAX Total </td>
 		<td id="table_td"><input type="hidden" name="h_total_tax" id="h_total_tax"><span id="total_tax" name="total_tax"></span></td>
 		</tr>
 		
         <tr>
         
         
-		<td id="table_td" colspan="2" style="text-align:right">Total Amount</td>
+		<td id="table_td" colspan="3" style="text-align:right">Total Amount</td>
 		<td id="table_td">
 		<input type="hidden" name="h_total_amount" id="h_total_amount"><span id="total_amount" name="total_amount"></span>
 		</td>

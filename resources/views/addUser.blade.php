@@ -106,6 +106,7 @@
   <span class="close1" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
 
   <!-- Modal Content (The Image) -->
+
   <img class="modal-content" id="img01" src="{{URL::asset('images/Capture.PNG')}}">
 
   <!-- Modal Caption (Image Text) -->
@@ -161,6 +162,7 @@
 						            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 						            {!! Form::submit('Upload CSV',['class'=>'btn btn-primary']) !!}
 						             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">View csv content format</button>
+						             <a href="{{ asset('images/sample.csv') }}">Download Sample Excel File</a>
 						            </div>
 						           
 						        </div>

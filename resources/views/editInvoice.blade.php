@@ -106,13 +106,13 @@
 		<td id="table_td" >Sr. No.</td>
 		<td id="table_td">Description</td>
         <td id="table_td">SAC Code</td>
-		
+		<td id="table_td">Quantity</td>
 		<td id="table_td">Amount</td>
 		</tr>
 
 		<tr style="height:150px;">
 		<td id="table_td">1.</td>
-		<td id="table_td">
+		<td id="table_td" id="table_td" style="vertical-align:top;">
 		@php ($i = 1)
 		@foreach($data as $data2)
 		<select class = "form-control"  id="product{{$i}}" name="product{{$i}}">
@@ -134,8 +134,14 @@
         	
 	        </span>
         </td>
-		
-		<td>
+		<td id="table_td" style="vertical-align:top;">
+		@php ($i = 1)
+		@foreach($data as $data4)
+			<input type="text" class="quantity{{$i}} form-control" id="quantity{{$i}}" name="quantity{{$i}}" value="{{$data4->quantity}}" style="visibility:visible;" onchange="calcQuanty(this.value);"><br>
+		@php ($i++)
+		@endforeach
+		</td>
+		<td id="table_td" style="vertical-align:top;">
 		@php ($i = 1)
 		@foreach($data as $data3)
 		<input class = "form-control"  type="text" name="amount{{$i}}" id="amount{{$i}}" value="{{$data3->amount}}"  onchange="EditcalcTax(this.value);"><br>
@@ -149,13 +155,14 @@
        <td id="table_td" rowspan="5" ></td>
         
 		<td id="table_td" colspan="2" style="text-align:right">Sub total</td>
+		<td id="table_td"><input type="hidden" name="h_Sub_qty_amount" id="h_Sub_qty_amount"><span id="Sub_qty_amount" name="Sub_qty_amount"></span></td>
 		<td id="table_td"><input readonly="" class = "form-control"  type="text" name="sub_total" id="sub_total" value="{{$data[0]->sub_total}}"></td>
 		</tr>
         
         <tr>
        
         
-		<td id="table_td" colspan="2" style="text-align:right">
+		<td id="table_td" colspan="3" style="text-align:right">
 		<span>CGST : 9%</span><br><br><br>
         <span>SGST : 9%</span><br><br><br>
         <span>IGST : 18%</span>
@@ -171,14 +178,14 @@
 		<tr>
         
         
-		<td id="table_td" colspan="2" style="text-align:right">GST TAX Total  </td>
+		<td id="table_td" colspan="3" style="text-align:right">GST TAX Total  </td>
 		<td id="table_td"><input class = "form-control"  readonly="" type="text" name="total_tax" id="total_tax" value="{{$data[0]->total_tax}}"></td>
 		</tr>
 		
         <tr>
         
         
-		<td id="table_td" colspan="2" style="text-align:right">Total Amount</td>
+		<td id="table_td" colspan="3" style="text-align:right">Total Amount</td>
 		<td id="table_td">
 		<input readonly="" class = "form-control"  type="text" name="total_amount" id="total_amount" value="{{$data[0]->total_amount}}">
 		</td>
@@ -188,16 +195,16 @@
 		<td colspan="4" id="table_td" align="left"></td>
 		</tr>
 		<tr>
-		<td colspan="3" id="table_td" align="left">
+		<td colspan="4" id="table_td" align="left">
 		<strong>Company Name:</strong><span>Mobisoft Technology India Pvt Ltd.</span><br>
 		<strong>Bank Name:</strong><span>ICICI Bank</span><br>
 		<strong>Account No:</strong><span>015105012883</span><br>
 		<strong>RTGS/NEFT/IFSC/CODE:</strong><span>ICIC0000151</span>
 		</td>
-		<td rowspan="2"></td>
+		<td rowspan="3"></td>
 		</tr>
 		<tr>
-		<td colspan="3" id="table_td" align="left">
+		<td colspan="4" id="table_td" align="left">
 		<strong>Company Name:</strong><span>Mobisoft Technology India Pvt Ltd.</span><br>
 		<strong>Bank Name:</strong><span>Central Bank of India Details</span><br>
 		<strong>Account No:</strong><span>3497063665</span><br>
